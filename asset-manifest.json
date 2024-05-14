@@ -1,15 +1,16 @@
 {
   "files": {
     "main.css": "/events_registration_app/static/css/main.5802cd39.css",
-    "main.js": "/events_registration_app/static/js/main.8977e5ad.js",
-    "static/css/650.8f8efa35.chunk.css": "/events_registration_app/static/css/650.8f8efa35.chunk.css",
-    "static/js/650.41445223.chunk.js": "/events_registration_app/static/js/650.41445223.chunk.js",
-    "static/js/285.d41052df.chunk.js": "/events_registration_app/static/js/285.d41052df.chunk.js",
-    "static/js/933.cac10420.chunk.js": "/events_registration_app/static/js/933.cac10420.chunk.js",
+    "main.js": "/events_registration_app/static/js/main.a6390689.js",
+    "static/css/161.31d6cfe0.chunk.css": "/events_registration_app/static/css/161.31d6cfe0.chunk.css",
+    "static/js/161.acbc79b7.chunk.js": "/events_registration_app/static/js/161.acbc79b7.chunk.js",
+    "static/js/285.796659bb.chunk.js": "/events_registration_app/static/js/285.796659bb.chunk.js",
+    "static/js/933.93827a2f.chunk.js": "/events_registration_app/static/js/933.93827a2f.chunk.js",
     "static/js/294.5f553ec1.chunk.js": "/events_registration_app/static/js/294.5f553ec1.chunk.js",
     "static/media/inter-latin-ext-400-normal.woff": "/events_registration_app/static/media/inter-latin-ext-400-normal.40b3b0d5e09a90fb6e3e.woff",
     "static/media/inter-latin-ext-400-normal.woff2": "/events_registration_app/static/media/inter-latin-ext-400-normal.0f9e8d4e940df8f6edfe.woff2",
     "static/media/inter-latin-400-normal.woff": "/events_registration_app/static/media/inter-latin-400-normal.08a02fd275ecea6ef662.woff",
+    "static/media/icon-event.png": "/events_registration_app/static/media/icon-event.2064463b2a54e3e80224.png",
     "static/media/inter-latin-400-normal.woff2": "/events_registration_app/static/media/inter-latin-400-normal.f1535355a7df553be385.woff2",
     "static/media/montserrat-latin-400-normal.woff": "/events_registration_app/static/media/montserrat-latin-400-normal.b48c3d9a8c0a49c1c7b4.woff",
     "static/media/montserrat-latin-ext-400-normal.woff": "/events_registration_app/static/media/montserrat-latin-ext-400-normal.cf42d14e809c6fdc0929.woff",
@@ -45,15 +46,14 @@
     "static/media/manrope-cyrillic-ext-400-normal.woff2": "/events_registration_app/static/media/manrope-cyrillic-ext-400-normal.6ba15efc9d2f0b9ed4a8.woff2",
     "index.html": "/events_registration_app/index.html",
     "main.5802cd39.css.map": "/events_registration_app/static/css/main.5802cd39.css.map",
-    "main.8977e5ad.js.map": "/events_registration_app/static/js/main.8977e5ad.js.map",
-    "650.8f8efa35.chunk.css.map": "/events_registration_app/static/css/650.8f8efa35.chunk.css.map",
-    "650.41445223.chunk.js.map": "/events_registration_app/static/js/650.41445223.chunk.js.map",
-    "285.d41052df.chunk.js.map": "/events_registration_app/static/js/285.d41052df.chunk.js.map",
-    "933.cac10420.chunk.js.map": "/events_registration_app/static/js/933.cac10420.chunk.js.map",
+    "main.a6390689.js.map": "/events_registration_app/static/js/main.a6390689.js.map",
+    "161.acbc79b7.chunk.js.map": "/events_registration_app/static/js/161.acbc79b7.chunk.js.map",
+    "285.796659bb.chunk.js.map": "/events_registration_app/static/js/285.796659bb.chunk.js.map",
+    "933.93827a2f.chunk.js.map": "/events_registration_app/static/js/933.93827a2f.chunk.js.map",
     "294.5f553ec1.chunk.js.map": "/events_registration_app/static/js/294.5f553ec1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5802cd39.css",
-    "static/js/main.8977e5ad.js"
+    "static/js/main.a6390689.js"
   ]
 }
