@@ -1,80 +1,77 @@
 import styled from 'styled-components';
+const DivEvents = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+`;
+const DivEvent = styled.div`
+  border: 1px solid black;
+  width: 290px;
+  padding: 16px;
+`;
+
+const DivRegisterView = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const H1 = styled.h1`
   /* position: absolute; */
   left: 420px;
   top: 400px;
-  font-size: 56px;
+  font-size: 24px;
 
-  text-align: center;
-  /* color: white; */
-  margin: 0;
-  &:hover {
-    font-size: 86px;
-    color: #3470ff;
-    left: 280px;
-    top: 380px;
-  }
+  margin: 0 0 20px 0;
+  padding-left: 12px;
 `;
 
-const H2 = styled.h2`
-  /* position: absolute; */
-  /* color: rgb(200, 233, 235);
-  color: #9da0b1; */
-  text-align: center;
-  width: 800px;
-  margin: 0 auto;
-  left: 0px;
-  bottom: 70px;
-`;
-
-const Img1 = styled.img`
-  position: absolute;
-  left: 0px;
-  top: 50px;
-  width: 400px;
-  border-radius: 20px;
-  /* transform: rotate(-20deg); */
-  border: 1px solid gray;
-  &:hover {
-    width: 500px;
-    left: -50px;
-    top: 0px;
-  }
-`;
-const Img2 = styled.img`
-  position: absolute;
-
-  width: 400px;
-  right: 0px;
-  bottom: 125px;
-  border-radius: 20px;
-  border: 1px solid gray;
-
-  /* transform: rotate(-20deg); */
-  &:hover {
-    width: 500px;
-    right: -25px;
-    bottom: 100px;
-  }
+const H2 = styled.h2``;
+const P = styled.p`
+  margin-bottom: 50px;
 `;
 
 const Section = styled.main`
   position: relative;
-  /* height: 1000px; */
-  /* background-color: dimgray; */
-
-  /* background-repeat: no-repeat;
-  max-width: 1440px; */
-  /* border: 2px solid gray;
-  border-radius: 15px; */
-  /* background-position: center;
-  background-size: cover;
-  background-image: linear-gradient(
-      rgba(46, 47, 66, 0.1),
-      rgba(46, 47, 66, 0.7)
-    ),
-    url('https://ftp.goit.study/img/cars-test-task/pontiac_firebird.jpeg'); */
+`;
+const DivPagination = styled.div`
+  margin-top: 30px;
+  text-align: center;
+  padding-bottom: 80px;
 `;
 
-export { H1, H2, Section, Img1, Img2 };
+const PaginationButton = styled.button`
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: transparent;
+  color: black;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: #f0f0f0;
+  }
+`;
+
+const SpanPagination = styled.span`
+  margin: 0 10px;
+`;
+
+export {
+  SpanPagination,
+  DivEvents,
+  DivEvent,
+  DivRegisterView,
+  H1,
+  H2,
+  P,
+  Section,
+  DivPagination,
+  PaginationButton,
+};

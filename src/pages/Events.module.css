@@ -1,52 +1,16 @@
-h1{
-    text-align: center;
-}
-.homeMovies{
-    
-display: flex;
-flex-direction: column;
-gap:10px;
-position: relative;
-}
-.home{
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
- gap:20px;
-}
 
-.home_div{
-width: 150px;
-/* color: #eae9f2; */
-color: #292727;
-background-color: #eae9f2;
-
-}
-
-.pagination{
+/* .pagination{
     margin-top: 30px;
     text-align: center;
     padding-bottom: 80px;
-}
-.span_pagination{
+} */
+/* .span_pagination{
     margin:0 10px;
-}
-.selectedLanguage{
-    position: absolute;
-    top: -30px;
-    right: 76px;
-}
+} */
 
-@media screen and (min-width: 768px) {
-    .selectedLanguage{right: 86px;}
-}
 
-select{
-    background-color: #cccccc;
-    border-radius: 4px;
-}
 
-option{
-background-color: rgb(227, 217, 241);
-}
+
+
+
 

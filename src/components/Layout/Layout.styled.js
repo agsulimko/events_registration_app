@@ -11,9 +11,10 @@ const Header = styled.header`
   display: flex;
   align-items: center;
 
-  justify-content: center;
-  gap: 40px;
-  padding: 22px 0;
+  /* justify-content: center; */
+  gap: 324px;
+  padding: 14px 0;
+  justify-content: flex-start;
 `;
 const UlListLayout = styled.ul`
   display: flex;
