@@ -94,17 +94,37 @@ const Register = () => {
     event: [registerId],
   });
   const [success, setSuccess] = useState(false);
-
+  const [errors, setErrors] = useState({});
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
+    // Сброс ошибки, если поле было заполнено после ошибки
+    setErrors({
+      ...errors,
+      [name]: "",
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Проверка на пустые поля
+    const validationErrors = {};
+    Object.entries(formData).forEach(([key, value]) => {
+      if (!value) {
+        validationErrors[key] = `${key} is required`;
+      }
+    });
+
+    // Если есть ошибки валидации, устанавливаем их и прерываем отправку формы
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     try {
       const userData = {
         ...formData,
@@ -178,8 +198,11 @@ const Register = () => {
               name="fullName"
               value={formData.fullName}
               onChange={handleChange}
+              pattern="/^[A-Z][a-z]{1,}$/"
+              placeholder="Anna Perfler"
               required
             />
+            {errors.fullName && <span>{errors.fullName}</span>}
           </Label>
           <Label>
             Email
@@ -188,8 +211,10 @@ const Register = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              placeholder="ivanov@gmail.com"
               required
             />
+            {errors.email && <span>{errors.email}</span>}
           </Label>
           <Label>
             Date of Birth
@@ -200,6 +225,7 @@ const Register = () => {
               onChange={handleChange}
               required
             />
+            {errors.dateOfBirth && <span>{errors.dateOfBirth}</span>}
           </Label>
         </DivForm>
 

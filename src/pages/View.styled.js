@@ -70,7 +70,21 @@ const Span = styled.span`
 const PView = styled.p`
   font-size: 24px;
 `;
-// const DivButtonGoBack = styled.div``;
+const SearchBar = styled.input`
+  height: 30px;
+  width: 400px;
+`;
+const DivSearchBar = styled.div`
+  display: flex;
+  gap: 50px;
+  margin-top: 50px;
+  margin-left: 10px;
+`;
+const Label = styled.label`
+  display: block;
+  margin-bottom: 10px;
+  margin-left: 5px;
+`;
 
 export {
   H1,
@@ -82,4 +96,7 @@ export {
   PView,
   SvgGoBack,
   Span,
+  SearchBar,
+  DivSearchBar,
+  Label,
 };
