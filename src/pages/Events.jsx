@@ -26,44 +26,35 @@ const LinkRegisterView = styled(Link)`
 
   &:focus {
     color: #0b44cd;
-    outline: none;
+    /* outline: none; */
   }
 `;
 
 const Events = () => {
   const location = useLocation();
   const [events, setEvents] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+
   const [totalPages, setTotalPages] = useState(1);
   const [lengthArray, setLengthArray] = useState(0);
+
+  const [currentPage, setCurrentPage] = useState(
+    parseInt(localStorage.getItem("currentPage"), 10) || 1
+  );
 
   const fetchAllEvents = async (page) => {
     try {
       const results = await getAllEvents();
 
-      // const { results, total_pages } = await getEvents(page);
-
-      // const { results, total_pages } = await getEvents(page);
-      // lengthArray / results.length;
-
-      console.log(results.length);
       setLengthArray(results.length);
     } catch (err) {
       console.log(err.message);
     }
   };
-  // useEffect(() => {
-  //   fetchAllEvents();
-  // }, []);
+
   const fetchEvents = async (page) => {
     try {
       const results = await getEvents(page);
-      // const { total_pages } = await getEvents(page);
-      // const { results, total_pages } = await getEvents(page);
 
-      // const { results, total_pages } = await getEvents(page);
-      // console.log(total_pages);
-      //   console.log(results);
       setEvents(results);
       setTotalPages(Math.ceil(lengthArray / results.length));
     } catch (err) {
@@ -72,27 +63,32 @@ const Events = () => {
   };
 
   useEffect(() => {
+    // Сначала получаем значение из localStorage, если оно есть
+    const currentPageFromStorage = parseInt(
+      localStorage.getItem("currentPage"),
+      10
+    );
+
+    // Если значение есть в localStorage и оно отличается от текущего значения, обновляем currentPage
+    if (currentPageFromStorage && currentPageFromStorage !== currentPage) {
+      setCurrentPage(currentPageFromStorage);
+    }
     fetchAllEvents();
     fetchEvents(currentPage);
     // eslint-disable-next-line
   }, [currentPage, totalPages]);
 
   const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
+    const nextPage = currentPage + 1; // Увеличиваем currentPage
+    setCurrentPage(nextPage); // Обновляем текущую страницу
+    localStorage.setItem("currentPage", nextPage); // Сохраняем новое значение в localStorage
   };
-  // const handleNextPage = () => {
-  //   if (currentPage < totalPages) {
-  //     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
-  //   }
-  // };
+
   const handlePrevPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
+    const prevPage = currentPage - 1; // Уменьшаем currentPage
+    setCurrentPage(prevPage); // Обновляем текущую страницу
+    localStorage.setItem("currentPage", prevPage); // Сохраняем новое значение в
   };
-  // const handlePrevPage = () => {
-  //   if (currentPage > 1) {
-  //     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-  //   }
-  // };
 
   return (
     <>
@@ -127,24 +123,7 @@ const Events = () => {
             <p>No events found</p>
           )}
         </DivEvents>
-        {/* <DivPagination className={css.pagination}>
-          <PaginationButton
-            onClick={handlePrevPage}
-            disabled={currentPage === 1}
-          >
-            Previous
-          </PaginationButton>
-          <SpanPagination className={css.span_pagination}>
-            Page {currentPage} {currentPage + 1} {currentPage + 2} ...{" "}
-            {totalPages - 1} {totalPages}
-          </SpanPagination>
-          <PaginationButton
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-          >
-            Next
-          </PaginationButton>
-        </DivPagination> */}
+
         <DivPagination className={css.pagination}>
           <PaginationButton
             onClick={handlePrevPage}

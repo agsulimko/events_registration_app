@@ -1,18 +1,53 @@
 // View.jsx
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { H1, Section } from "./Events.styled";
+import {
+  H1,
+  Section,
+  DivViews,
+  DivView,
+  FullName,
+  Email,
+  SvgGoBack,
+  Span,
+  PView,
+} from "./View.styled";
 import { getViews } from "api/api";
+import sprite from "../image/sprite.svg";
+import styled from "styled-components";
+
+const LinkGoBack = styled(Link)`
+  color: #3470ff;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.43;
+  /* line-height: 143%; */
+  border-radius: 5px;
+  padding: 14px 44px;
+  width: 136px;
+  height: 48px;
+  background-color: #3470ff;
+  color: #ffffff;
+  margin-left: 10px;
+  &:hover,
+  &:focus {
+    background-color: #0b44cd;
+  }
+  /* position: relative;
+  display: flex; */
+  /* flex-direction: column;
+  justify-content: center; */
+  /* gap: 10px;
+  padding-top: 10px; */
+  padding-left: 0px;
+`;
 const View = () => {
-  // const location = useLocation();
-  const { viewId } = useParams(); // Получаем id из URL
+  const { viewId } = useParams();
   const [views, setViews] = useState([]);
-  console.log(viewId);
+
   const fetchViews = async (page) => {
     try {
       const results = await getViews();
-
-      console.log(results);
 
       // Фильтруем просмотры, чтобы отобразить только те, которые относятся к выбранному мероприятию
       const filteredViews = results.filter((view) =>
@@ -30,23 +65,31 @@ const View = () => {
   }, [viewId]);
 
   return (
-    <>
-      <Section>
-        <H1>"Awesome Event" participants</H1>
-        <Link to="/">Вернуться назад на домашнюю страницу</Link>
-      </Section>
-      {views && views.length > 0 ? (
-        views.map((view, index) => (
-          <div key={index}>
-            <p>Name: {view.fullName}</p>
-            <p>Email: {view.email}</p>
-            {/* Другие данные о пользователе */}
-          </div>
-        ))
-      ) : (
-        <p>No views found</p>
-      )}
-    </>
+    <Section>
+      <div>
+        <H1>Awesome Event participants</H1>
+        <LinkGoBack to="/">
+          <Span>
+            <SvgGoBack className={"css.svgGoBack"}>
+              <use href={`${sprite}#icon-arrow-left-white`}></use>
+            </SvgGoBack>
+            Go back
+          </Span>
+        </LinkGoBack>
+      </div>
+      <DivViews>
+        {views && views.length > 0 ? (
+          views.map((view, index) => (
+            <DivView key={index}>
+              <FullName>{view.fullName}</FullName>
+              <Email>{view.email}</Email>
+            </DivView>
+          ))
+        ) : (
+          <PView>No views found!!!</PView>
+        )}
+      </DivViews>
+    </Section>
   );
 };
 

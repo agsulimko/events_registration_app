@@ -22,7 +22,7 @@ const H1 = styled.h1`
   top: 400px;
   font-size: 24px;
 
-  margin: 0 0 20px 0;
+  margin: 40px 0 40px 0;
   padding-left: 12px;
 `;
 
@@ -31,8 +31,8 @@ const P = styled.p`
   margin-bottom: 50px;
 `;
 
-const Section = styled.main`
-  position: relative;
+const Section = styled.section`
+  /* position: relative; */
 `;
 const DivPagination = styled.div`
   margin-top: 30px;

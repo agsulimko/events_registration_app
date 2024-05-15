@@ -12,8 +12,8 @@ const Header = styled.header`
   align-items: center;
 
   /* justify-content: center; */
-  gap: 324px;
-  padding: 14px 0;
+  gap: 280px;
+  padding: 8px 0;
   justify-content: flex-start;
 `;
 const UlListLayout = styled.ul`

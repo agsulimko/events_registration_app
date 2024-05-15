@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "styled-components";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { UlListLayout } from "./Layout.styled";
@@ -6,6 +6,7 @@ import { Container as BaseContainer } from "styles/Container/Container";
 import { Header as BaseHeader } from "./Layout.styled";
 
 import icon from "../../image/icon-event.png";
+import Loader from "components/Loader/Loader";
 const LogoLink = styled(Link)`
   /* position: absolute; */
   display: flex;
@@ -140,7 +141,9 @@ const Layout = () => {
       </Header>
 
       <main>
-        <Outlet />
+        <Suspense fallback={<div>{Loader()}</div>}>
+          <Outlet />
+        </Suspense>
       </main>
     </Container>
   );

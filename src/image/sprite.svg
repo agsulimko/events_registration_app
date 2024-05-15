@@ -99,7 +99,11 @@
 			<path fill="none" stroke="#e6533c" style="stroke: var(--color3, #e6533c)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="4.8" d="M18.133 29.333l-13.333-13.333M4.8 16l13.333-13.333M4.8 16h32">
 			</path>
 		</symbol>
-		<symbol id="icon-arrow-left-gray" viewBox="0 0 42 32">
+		<symbol id="icon-arrow-left-white" viewBox="0 0 42 32">
+			<path fill="none" stroke="rgba(239, 237, 232, 1)" style="stroke: rgba(239, 237, 232, 1)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="4.8" d="M18.133 29.333l-13.333-13.333M4.8 16l13.333-13.333M4.8 16h32">
+			</path>
+		</symbol>
+			<symbol id="icon-arrow-left-gray" viewBox="0 0 42 32">
 			<path fill="none" stroke="rgba(239, 237, 232, 0.4)" style="stroke: rgba(239, 237, 232, 0.4)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="4.8" d="M18.133 29.333l-13.333-13.333M4.8 16l13.333-13.333M4.8 16h32">
 			</path>
 		</symbol>
