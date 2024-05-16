@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/events_registration_app/static/css/main.5802cd39.css",
-    "main.js": "/events_registration_app/static/js/main.35a649de.js",
-    "static/js/762.503a9347.chunk.js": "/events_registration_app/static/js/762.503a9347.chunk.js",
-    "static/js/149.aff23fe4.chunk.js": "/events_registration_app/static/js/149.aff23fe4.chunk.js",
+    "main.js": "/events_registration_app/static/js/main.99df2403.js",
+    "static/js/762.1be2be6e.chunk.js": "/events_registration_app/static/js/762.1be2be6e.chunk.js",
+    "static/js/149.b9984373.chunk.js": "/events_registration_app/static/js/149.b9984373.chunk.js",
     "static/js/617.a672d613.chunk.js": "/events_registration_app/static/js/617.a672d613.chunk.js",
     "static/js/294.5f553ec1.chunk.js": "/events_registration_app/static/js/294.5f553ec1.chunk.js",
     "static/media/sprite.svg": "/events_registration_app/static/media/sprite.f79340501a3c93d876ae178ed3fa50d3.svg",
@@ -46,14 +46,14 @@
     "static/media/manrope-cyrillic-ext-400-normal.woff2": "/events_registration_app/static/media/manrope-cyrillic-ext-400-normal.6ba15efc9d2f0b9ed4a8.woff2",
     "index.html": "/events_registration_app/index.html",
     "main.5802cd39.css.map": "/events_registration_app/static/css/main.5802cd39.css.map",
-    "main.35a649de.js.map": "/events_registration_app/static/js/main.35a649de.js.map",
-    "762.503a9347.chunk.js.map": "/events_registration_app/static/js/762.503a9347.chunk.js.map",
-    "149.aff23fe4.chunk.js.map": "/events_registration_app/static/js/149.aff23fe4.chunk.js.map",
+    "main.99df2403.js.map": "/events_registration_app/static/js/main.99df2403.js.map",
+    "762.1be2be6e.chunk.js.map": "/events_registration_app/static/js/762.1be2be6e.chunk.js.map",
+    "149.b9984373.chunk.js.map": "/events_registration_app/static/js/149.b9984373.chunk.js.map",
     "617.a672d613.chunk.js.map": "/events_registration_app/static/js/617.a672d613.chunk.js.map",
     "294.5f553ec1.chunk.js.map": "/events_registration_app/static/js/294.5f553ec1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5802cd39.css",
-    "static/js/main.35a649de.js"
+    "static/js/main.99df2403.js"
   ]
 }
