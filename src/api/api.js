@@ -7,7 +7,7 @@ export const getAllEvents = async () => {
 
   try {
     const response = await axios.get(url.toString());
-
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     console.error('Failed to fetch events:', error.message);
@@ -27,7 +27,7 @@ export const getEvents = async (page, sortBy) => {
 
   try {
     const response = await axios.get(url.toString());
-
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     console.error('Failed to fetch events:', error.message);
@@ -35,7 +35,7 @@ export const getEvents = async (page, sortBy) => {
   }
 };
 
-export const getViews = async (page, make) => {
+export const getViews = async page => {
   const url = new URL('/users', axios.defaults.baseURL);
 
   try {
@@ -67,3 +67,33 @@ export const postViews = async userData => {
     throw error;
   }
 };
+
+// // / Функция для проверки уникальности email
+//  const [emailError, setEmailError] = useSta;
+//   const checkEmailExists = async (email) => {
+//     try {
+//       // Отправляем запрос к серверу для проверки email
+//       const response = await fetch(
+//         `/api/check-email?email=${encodeURIComponent(email)}`
+//       );
+//       const data = await response.json();
+//       if (data.exists) {
+//         setEmailError("Email already exists"); // Если email уже существует, устанавливаем ошибку
+//       } else {
+//         setEmailError(""); // Если email уникален, очищаем ошибку
+//       }
+//     } catch (error) {
+//       console.error("Error checking email:", error);
+//       setEmailError("Error checking email");
+//     }
+//   };
+
+//   // Обработчик изменений в поле email
+//   const handleEmailChange = (e) => {
+//     const { value } = e.target;
+//     setFormData({
+//       ...formData,
+//       email: value,
+//     });
+//     setEmailError(""); // При изменении email очищаем ошибку
+//   };

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+// // Register.jsx
 
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import {
   H1,
   H2,
@@ -17,7 +18,7 @@ import {
   DivButton,
   DivLink,
 } from "./Register.styled";
-import { postViews } from "api/api";
+import { getViews, postViews } from "api/api";
 import styled from "styled-components";
 import { toast } from "react-hot-toast";
 
@@ -29,9 +30,7 @@ const LinkCancel = styled(Link)`
   font-weight: 600;
   font-size: 14px;
   line-height: 1.43;
-  /* line-height: 143%; */
   border-radius: 5px;
-
   width: 136px;
   height: 48px;
   background-color: #3470ff;
@@ -51,9 +50,7 @@ const LinkReturn = styled(Link)`
   font-weight: 600;
   font-size: 14px;
   line-height: 1.43;
-
   border-radius: 5px;
-
   width: 136px;
   height: 48px;
   background-color: #3470ff;
@@ -76,45 +73,66 @@ const Register = () => {
   });
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState({});
+  const [views, setViews] = useState([]);
+  // const [email, setEmail] = useState("");
+
+  const fetchViews = async () => {
+    try {
+      const results = await getViews();
+      setViews(results.filter((view) => view.event.includes(registerId)));
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchViews();
+    // eslint-disable-next-line
+  }, [registerId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
 
-    //   const differenceInMs =
-    //     selectedDateObj.getTime() - currentDateObj.getTime(); // Разница в миллисекундах
-    //   const differenceInDays = differenceInMs / (1000 * 60 * 60 * 24); // Разница в днях
+    if (name === "email") {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        setErrors({ ...errors, [name]: "Invalid email address" });
+      } else {
+        setErrors({ ...errors, [name]: "" });
+      }
+    }
 
     if (name === "dateOfBirth") {
       const currentDate = new Date().toISOString().split("T")[0];
       const selectedDate = value;
-
       const currentDateObj = new Date(currentDate);
       const selectedDateObj = new Date(selectedDate);
       const differenceInMs =
         selectedDateObj.getTime() - currentDateObj.getTime();
-      console.log("differenceInDays=", differenceInMs);
-      console.log("currentDate:", currentDate);
-      console.log("selectedDate:", selectedDate);
       if (differenceInMs > 0) {
         setErrors({
           ...errors,
-          [name]: "Error!   ",
+          [name]: "Date of birth cannot be in the future",
         });
       } else {
-        setErrors({
-          ...errors,
-          [name]: "",
-        });
+        setErrors({ ...errors, [name]: "" });
       }
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const filteredEmail = views.filter((view) => view.email === formData.email);
+
+    if (filteredEmail.length > 0) {
+      toast.error("User with this email is already registered.", {
+        duration: 5000,
+        position: "top-right",
+      });
+      return;
+    }
 
     const validationErrors = {};
     Object.entries(formData).forEach(([key, value]) => {
@@ -129,15 +147,10 @@ const Register = () => {
     }
 
     try {
-      const userData = {
-        ...formData,
-        event: [registerId],
-      };
-
+      const userData = { ...formData, event: [registerId] };
       await postViews(userData);
       setSuccess(true);
-
-      toast.success("Successfully adding a  user!", {
+      toast.success("Successfully adding a user!", {
         duration: 4000,
         position: "top-right",
         autoClose: 5000,
@@ -148,7 +161,6 @@ const Register = () => {
         progress: undefined,
         theme: "colored",
       });
-
       toast.success("Thank you for registering.", {
         duration: 4000,
         position: "top-right",
@@ -161,7 +173,7 @@ const Register = () => {
         theme: "colored",
       });
     } catch (error) {
-      toast.error("Failed to submit registration:", error.message, {
+      toast.error(`Failed to submit registration: ${error.message}`, {
         duration: 1500,
         position: "top-right",
         autoClose: 5000,
@@ -169,8 +181,6 @@ const Register = () => {
       console.error("Failed to submit registration:", error.message);
     }
   };
-
-  console.log(formData.dateOfBirth);
 
   if (success) {
     return (
@@ -224,7 +234,7 @@ const Register = () => {
               required
             />
             {errors.dateOfBirth && <span>{errors.dateOfBirth}</span>}
-            {errors.dateOfBirth === "Error!   " && (
+            {errors.dateOfBirth === "Date of birth cannot be in the future" && (
               <span style={{ color: "red" }}>
                 Date of birth cannot be in the future
               </span>
