@@ -64,6 +64,7 @@ const LinkReturn = styled(Link)`
     background-color: #0b44cd;
   }
 `;
+
 const Register = () => {
   const { registerId } = useParams();
   const [formData, setFormData] = useState({
@@ -75,6 +76,7 @@ const Register = () => {
   });
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState({});
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -82,10 +84,33 @@ const Register = () => {
       [name]: value,
     });
 
-    setErrors({
-      ...errors,
-      [name]: "",
-    });
+    //   const differenceInMs =
+    //     selectedDateObj.getTime() - currentDateObj.getTime(); // Разница в миллисекундах
+    //   const differenceInDays = differenceInMs / (1000 * 60 * 60 * 24); // Разница в днях
+
+    if (name === "dateOfBirth") {
+      const currentDate = new Date().toISOString().split("T")[0];
+      const selectedDate = value;
+
+      const currentDateObj = new Date(currentDate);
+      const selectedDateObj = new Date(selectedDate);
+      const differenceInMs =
+        selectedDateObj.getTime() - currentDateObj.getTime();
+      console.log("differenceInDays=", differenceInMs);
+      console.log("currentDate:", currentDate);
+      console.log("selectedDate:", selectedDate);
+      if (differenceInMs > 0) {
+        setErrors({
+          ...errors,
+          [name]: "Error!   ",
+        });
+      } else {
+        setErrors({
+          ...errors,
+          [name]: "",
+        });
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -145,7 +170,8 @@ const Register = () => {
     }
   };
 
-  // };
+  console.log(formData.dateOfBirth);
+
   if (success) {
     return (
       <SuccessMessage>
@@ -170,7 +196,7 @@ const Register = () => {
               name="fullName"
               value={formData.fullName}
               onChange={handleChange}
-              // pattern="/^[A-Z][a-z]{1,}$/"
+              pattern="/^[A-Z][a-zA-ZÀ-ÿ'-]+( [A-Z][a-zA-ZÀ-ÿ'-]+)*$/"
               placeholder="Anna Perfler"
               required
             />
@@ -198,6 +224,11 @@ const Register = () => {
               required
             />
             {errors.dateOfBirth && <span>{errors.dateOfBirth}</span>}
+            {errors.dateOfBirth === "Error!   " && (
+              <span style={{ color: "red" }}>
+                Date of birth cannot be in the future
+              </span>
+            )}
           </Label>
         </DivForm>
 
