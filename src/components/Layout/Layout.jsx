@@ -17,7 +17,7 @@ const LogoLink = styled(Link)`
 `;
 const StyledLink = styled(NavLink)`
   padding: 12px 30px;
-  border-radius: 12px;
+  border-radius: 5px;
   text-decoration: none;
   color: black;
   font-weight: 600;

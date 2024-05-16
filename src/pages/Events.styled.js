@@ -59,6 +59,23 @@ const PaginationButton = styled.button`
 const SpanPagination = styled.span`
   margin: 0 10px;
 `;
+const ButtonSort = styled.button`
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.43;
+  /* line-height: 143%; */
+  border-radius: 5px;
+  margin-left: 11px;
+
+  width: 136px;
+  height: 48px;
+  background-color: #3470ff;
+  color: #ffffff;
+  &:hover,
+  &:focus {
+    background-color: #0b44cd;
+  }
+`;
 
 export {
   SpanPagination,
@@ -71,4 +88,5 @@ export {
   Section,
   DivPagination,
   PaginationButton,
+  ButtonSort,
 };

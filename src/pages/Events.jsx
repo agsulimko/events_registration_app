@@ -11,11 +11,13 @@ import {
   DivPagination,
   SpanPagination,
   PaginationButton,
+  ButtonSort,
 } from "./Events.styled";
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import css from "./Events.module.css";
+
 import styled from "styled-components";
+
 const LinkRegisterView = styled(Link)`
   color: #3470ff;
   font-weight: 600;
@@ -32,13 +34,12 @@ const LinkRegisterView = styled(Link)`
 const Events = () => {
   const location = useLocation();
   const [events, setEvents] = useState([]);
-
   const [totalPages, setTotalPages] = useState(1);
   const [lengthArray, setLengthArray] = useState(0);
-
   const [currentPage, setCurrentPage] = useState(
     parseInt(localStorage.getItem("currentPage"), 10) || 1
   );
+  const [sortBy, setSortBy] = useState("");
 
   const fetchAllEvents = async (page) => {
     try {
@@ -50,10 +51,9 @@ const Events = () => {
     }
   };
 
-  const fetchEvents = async (page) => {
+  const fetchEvents = async (page, sortBy) => {
     try {
-      const results = await getEvents(page);
-
+      const results = await getEvents(page, sortBy);
       setEvents(results);
       setTotalPages(Math.ceil(lengthArray / results.length));
     } catch (err) {
@@ -71,9 +71,10 @@ const Events = () => {
       setCurrentPage(currentPageFromStorage);
     }
     fetchAllEvents();
-    fetchEvents(currentPage);
+    // fetchEvents(currentPage, "title");
+    fetchEvents(currentPage, sortBy);
     // eslint-disable-next-line
-  }, [currentPage, totalPages]);
+  }, [currentPage, totalPages, sortBy]);
 
   const handleNextPage = () => {
     const nextPage = currentPage + 1;
@@ -87,16 +88,21 @@ const Events = () => {
     localStorage.setItem("currentPage", prevPage);
   };
 
+  const handleSortByTitle = () => {
+    setSortBy("title");
+  };
+
   return (
     <>
       <Section>
         <H1>Events</H1>
+        <ButtonSort onClick={handleSortByTitle}>Sort by Title</ButtonSort>
 
-        <DivEvents className={css.events}>
+        <DivEvents className={"css.events"}>
           {events && events.length > 0 ? (
             events.map((event, index) => {
               return (
-                <DivEvent key={index} className={css.event_div}>
+                <DivEvent key={index} className={"css.event_div"}>
                   <H2>{event.title}</H2>
                   <P>{event.description}</P>
                   <DivRegisterView>
@@ -121,14 +127,14 @@ const Events = () => {
           )}
         </DivEvents>
 
-        <DivPagination className={css.pagination}>
+        <DivPagination className={"css.pagination"}>
           <PaginationButton
             onClick={handlePrevPage}
             disabled={currentPage === 1}
           >
             Previous
           </PaginationButton>
-          <SpanPagination className={css.span_pagination}>
+          <SpanPagination className={"css.span_pagination"}>
             {Array.from({ length: totalPages }, (_, index) => (
               <span
                 key={index}
