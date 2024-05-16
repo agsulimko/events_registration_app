@@ -1,11 +1,10 @@
 {
   "files": {
     "main.css": "/events_registration_app/static/css/main.5802cd39.css",
-    "main.js": "/events_registration_app/static/js/main.581c882b.js",
-    "static/css/280.31d6cfe0.chunk.css": "/events_registration_app/static/css/280.31d6cfe0.chunk.css",
-    "static/js/280.89867d07.chunk.js": "/events_registration_app/static/js/280.89867d07.chunk.js",
-    "static/js/149.7763bbdf.chunk.js": "/events_registration_app/static/js/149.7763bbdf.chunk.js",
-    "static/js/617.4d66ce66.chunk.js": "/events_registration_app/static/js/617.4d66ce66.chunk.js",
+    "main.js": "/events_registration_app/static/js/main.35a649de.js",
+    "static/js/762.503a9347.chunk.js": "/events_registration_app/static/js/762.503a9347.chunk.js",
+    "static/js/149.aff23fe4.chunk.js": "/events_registration_app/static/js/149.aff23fe4.chunk.js",
+    "static/js/617.a672d613.chunk.js": "/events_registration_app/static/js/617.a672d613.chunk.js",
     "static/js/294.5f553ec1.chunk.js": "/events_registration_app/static/js/294.5f553ec1.chunk.js",
     "static/media/sprite.svg": "/events_registration_app/static/media/sprite.f79340501a3c93d876ae178ed3fa50d3.svg",
     "static/media/inter-latin-ext-400-normal.woff": "/events_registration_app/static/media/inter-latin-ext-400-normal.40b3b0d5e09a90fb6e3e.woff",
@@ -47,14 +46,14 @@
     "static/media/manrope-cyrillic-ext-400-normal.woff2": "/events_registration_app/static/media/manrope-cyrillic-ext-400-normal.6ba15efc9d2f0b9ed4a8.woff2",
     "index.html": "/events_registration_app/index.html",
     "main.5802cd39.css.map": "/events_registration_app/static/css/main.5802cd39.css.map",
-    "main.581c882b.js.map": "/events_registration_app/static/js/main.581c882b.js.map",
-    "280.89867d07.chunk.js.map": "/events_registration_app/static/js/280.89867d07.chunk.js.map",
-    "149.7763bbdf.chunk.js.map": "/events_registration_app/static/js/149.7763bbdf.chunk.js.map",
-    "617.4d66ce66.chunk.js.map": "/events_registration_app/static/js/617.4d66ce66.chunk.js.map",
+    "main.35a649de.js.map": "/events_registration_app/static/js/main.35a649de.js.map",
+    "762.503a9347.chunk.js.map": "/events_registration_app/static/js/762.503a9347.chunk.js.map",
+    "149.aff23fe4.chunk.js.map": "/events_registration_app/static/js/149.aff23fe4.chunk.js.map",
+    "617.a672d613.chunk.js.map": "/events_registration_app/static/js/617.a672d613.chunk.js.map",
     "294.5f553ec1.chunk.js.map": "/events_registration_app/static/js/294.5f553ec1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5802cd39.css",
-    "static/js/main.581c882b.js"
+    "static/js/main.35a649de.js"
   ]
 }
