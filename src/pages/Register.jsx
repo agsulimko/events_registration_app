@@ -113,7 +113,7 @@ const Register = () => {
       if (differenceInMs > 0) {
         setErrors({
           ...errors,
-          [name]: "Date of birth cannot be in the future",
+          [name]: "",
         });
       } else {
         setErrors({ ...errors, [name]: "" });
@@ -234,7 +234,7 @@ const Register = () => {
               required
             />
             {errors.dateOfBirth && <span>{errors.dateOfBirth}</span>}
-            {errors.dateOfBirth === "Date of birth cannot be in the future" && (
+            {errors.dateOfBirth === "" && (
               <span style={{ color: "red" }}>
                 Date of birth cannot be in the future
               </span>
