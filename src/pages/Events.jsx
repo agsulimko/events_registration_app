@@ -26,7 +26,6 @@ const LinkRegisterView = styled(Link)`
 
   &:focus {
     color: #0b44cd;
-    /* outline: none; */
   }
 `;
 
