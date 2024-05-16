@@ -12,6 +12,8 @@ import {
   SpanPagination,
   PaginationButton,
   ButtonSort,
+  DivSortButton,
+  DivButton,
 } from "./Events.styled";
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -40,6 +42,7 @@ const Events = () => {
     parseInt(localStorage.getItem("currentPage"), 10) || 1
   );
   const [sortBy, setSortBy] = useState("");
+  const [resetFilters, setResetFilters] = useState(false); //
 
   const fetchAllEvents = async (page) => {
     try {
@@ -74,7 +77,7 @@ const Events = () => {
     // fetchEvents(currentPage, "title");
     fetchEvents(currentPage, sortBy);
     // eslint-disable-next-line
-  }, [currentPage, totalPages, sortBy]);
+  }, [currentPage, totalPages, sortBy, resetFilters]);
 
   const handleNextPage = () => {
     const nextPage = currentPage + 1;
@@ -91,12 +94,34 @@ const Events = () => {
   const handleSortByTitle = () => {
     setSortBy("title");
   };
+  const handleSortEventDate = () => {
+    setSortBy("eventdate");
+  };
+  const handleSortByOrganizer = () => {
+    setSortBy("organizer");
+  };
+
+  const handleResetFilters = () => {
+    setResetFilters((prevState) => !prevState);
+    setSortBy("");
+  };
 
   return (
     <>
       <Section>
         <H1>Events</H1>
-        <ButtonSort onClick={handleSortByTitle}>Sort by Title</ButtonSort>
+        <DivButton>
+          <DivSortButton>
+            <ButtonSort onClick={handleSortByTitle}>Sort by title</ButtonSort>
+            <ButtonSort onClick={handleSortEventDate}>
+              Sort by event date
+            </ButtonSort>
+            <ButtonSort onClick={handleSortByOrganizer}>
+              Sort by organizer
+            </ButtonSort>
+          </DivSortButton>
+          <ButtonSort onClick={handleResetFilters}>Reset Filters</ButtonSort>
+        </DivButton>
 
         <DivEvents className={"css.events"}>
           {events && events.length > 0 ? (
@@ -140,6 +165,7 @@ const Events = () => {
                 key={index}
                 style={{
                   color: currentPage === index + 1 ? "#3470ff" : "inherit",
+                  fontWeight: 600,
                 }}
               >
                 {index + 1}

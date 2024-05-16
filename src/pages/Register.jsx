@@ -170,7 +170,7 @@ const Register = () => {
               name="fullName"
               value={formData.fullName}
               onChange={handleChange}
-              pattern="/^[A-Z][a-z]{1,}$/"
+              // pattern="/^[A-Z][a-z]{1,}$/"
               placeholder="Anna Perfler"
               required
             />

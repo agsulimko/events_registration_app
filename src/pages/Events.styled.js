@@ -42,8 +42,10 @@ const PaginationButton = styled.button`
   margin: 0 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: transparent;
-  color: black;
+  /* background-color: transparent;
+  color: black; */
+  background-color: #3470ff;
+  color: #ffffff;
   cursor: pointer;
 
   &:disabled {
@@ -52,7 +54,8 @@ const PaginationButton = styled.button`
   }
 
   &:hover:not(:disabled) {
-    background-color: #f0f0f0;
+    /* background-color: #f0f0f0; */
+    background-color: #0b44cd;
   }
 `;
 
@@ -65,7 +68,6 @@ const ButtonSort = styled.button`
   line-height: 1.43;
   /* line-height: 143%; */
   border-radius: 5px;
-  margin-left: 11px;
 
   width: 136px;
   height: 48px;
@@ -75,6 +77,17 @@ const ButtonSort = styled.button`
   &:focus {
     background-color: #0b44cd;
   }
+`;
+const DivButton = styled.div`
+  display: flex;
+  margin-left: 11px;
+  gap: 200px;
+  margin-bottom: 40px;
+`;
+const DivSortButton = styled.div`
+  display: flex;
+
+  gap: 50px;
 `;
 
 export {
@@ -89,4 +102,6 @@ export {
   DivPagination,
   PaginationButton,
   ButtonSort,
+  DivButton,
+  DivSortButton,
 };
