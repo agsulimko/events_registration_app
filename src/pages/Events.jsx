@@ -62,13 +62,11 @@ const Events = () => {
   };
 
   useEffect(() => {
-    // Сначала получаем значение из localStorage, если оно есть
     const currentPageFromStorage = parseInt(
       localStorage.getItem("currentPage"),
       10
     );
 
-    // Если значение есть в localStorage и оно отличается от текущего значения, обновляем currentPage
     if (currentPageFromStorage && currentPageFromStorage !== currentPage) {
       setCurrentPage(currentPageFromStorage);
     }
@@ -78,15 +76,15 @@ const Events = () => {
   }, [currentPage, totalPages]);
 
   const handleNextPage = () => {
-    const nextPage = currentPage + 1; // Увеличиваем currentPage
-    setCurrentPage(nextPage); // Обновляем текущую страницу
-    localStorage.setItem("currentPage", nextPage); // Сохраняем новое значение в localStorage
+    const nextPage = currentPage + 1;
+    setCurrentPage(nextPage);
+    localStorage.setItem("currentPage", nextPage);
   };
 
   const handlePrevPage = () => {
-    const prevPage = currentPage - 1; // Уменьшаем currentPage
-    setCurrentPage(prevPage); // Обновляем текущую страницу
-    localStorage.setItem("currentPage", prevPage); // Сохраняем новое значение в
+    const prevPage = currentPage - 1;
+    setCurrentPage(prevPage);
+    localStorage.setItem("currentPage", prevPage);
   };
 
   return (

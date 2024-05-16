@@ -17,7 +17,6 @@ const DivRegisterView = styled.div`
 `;
 
 const H1 = styled.h1`
-  /* position: absolute; */
   left: 420px;
   top: 400px;
   font-size: 24px;
@@ -31,9 +30,7 @@ const P = styled.p`
   margin-bottom: 50px;
 `;
 
-const Section = styled.section`
-  /* position: relative; */
-`;
+const Section = styled.section``;
 const DivPagination = styled.div`
   margin-top: 30px;
   text-align: center;

@@ -31,7 +31,7 @@ const LinkCancel = styled(Link)`
   line-height: 1.43;
   /* line-height: 143%; */
   border-radius: 5px;
-  /* padding: 14px 44px; */
+
   width: 136px;
   height: 48px;
   background-color: #3470ff;
@@ -42,27 +42,7 @@ const LinkCancel = styled(Link)`
     background-color: #0b44cd;
   }
 `;
-// const LinkRegister = styled(Link)`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   color: #3470ff;
-//   font-weight: 600;
-//   font-size: 14px;
-//   line-height: 1.43;
-//   /* line-height: 143%; */
-//   border-radius: 5px;
-//   /* padding: 14px 44px; */
-//   width: 136px;
-//   height: 48px;
-//   background-color: #3470ff;
-//   color: #ffffff;
 
-//   &:hover,
-//   &:focus {
-//     background-color: #0b44cd;
-//   }
-// `;
 const LinkReturn = styled(Link)`
   display: flex;
   align-items: center;
@@ -71,9 +51,9 @@ const LinkReturn = styled(Link)`
   font-weight: 600;
   font-size: 14px;
   line-height: 1.43;
-  /* line-height: 143%; */
+
   border-radius: 5px;
-  /* padding: 14px 44px; */
+
   width: 136px;
   height: 48px;
   background-color: #3470ff;
@@ -101,7 +81,7 @@ const Register = () => {
       ...formData,
       [name]: value,
     });
-    // Сброс ошибки, если поле было заполнено после ошибки
+
     setErrors({
       ...errors,
       [name]: "",
@@ -111,7 +91,6 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Проверка на пустые поля
     const validationErrors = {};
     Object.entries(formData).forEach(([key, value]) => {
       if (!value) {
@@ -119,7 +98,6 @@ const Register = () => {
       }
     });
 
-    // Если есть ошибки валидации, устанавливаем их и прерываем отправку формы
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
@@ -133,9 +111,7 @@ const Register = () => {
 
       await postViews(userData);
       setSuccess(true);
-      // toast.success("Successfully adding a  user!", {
-      //   duration: 4000,
-      // });
+
       toast.success("Successfully adding a  user!", {
         duration: 4000,
         position: "top-right",
@@ -147,7 +123,6 @@ const Register = () => {
         progress: undefined,
         theme: "colored",
       });
-      // toast.success("Successfully adding a  user!", toastifyOptions);
 
       toast.success("Thank you for registering.", {
         duration: 4000,
@@ -178,9 +153,6 @@ const Register = () => {
         <H3>Thank you for registering.</H3>
         <DivLink>
           <LinkReturn to="/">Return to events</LinkReturn>
-          {/* <LinkRegister to={`/events_registration_app/register/${registerId}`}>
-            Register more
-          </LinkRegister> */}
         </DivLink>
       </SuccessMessage>
     );

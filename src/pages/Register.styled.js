@@ -6,8 +6,7 @@ const H1 = styled.h1`
 `;
 const H2 = styled.h1`
   margin-top: 100px;
-  /* font-size: 24px;
-  margin: 40px 0 40px 0; */
+
   text-align: center;
 `;
 const H3 = styled.h1`
@@ -69,7 +68,7 @@ const Button = styled.button`
 
 const DivButton = styled.div`
   display: flex;
-  /* gap: 40px; */
+
   align-items: center;
   justify-content: space-around;
 `;
@@ -89,7 +88,6 @@ const DivRadioInput = styled.div`
   margin-bottom: 40px;
 `;
 const DivForm = styled.div`
-  /* display: flex; */
   width: 450px;
 `;
 

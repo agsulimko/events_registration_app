@@ -11,7 +11,6 @@ const Header = styled.header`
   display: flex;
   align-items: center;
 
-  /* justify-content: center; */
   gap: 280px;
   padding: 8px 0;
   justify-content: flex-start;

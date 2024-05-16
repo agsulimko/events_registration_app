@@ -50,7 +50,6 @@ const View = () => {
     try {
       const results = await getViews();
 
-      // Фильтруем просмотры, чтобы отобразить только те, которые относятся к выбранному мероприятию
       const filteredViews = results.filter((view) =>
         view.event.includes(viewId)
       );
