@@ -68,32 +68,42 @@ export const postViews = async userData => {
   }
 };
 
-// // / Функция для проверки уникальности email
-//  const [emailError, setEmailError] = useSta;
-//   const checkEmailExists = async (email) => {
-//     try {
-//       // Отправляем запрос к серверу для проверки email
-//       const response = await fetch(
-//         `/api/check-email?email=${encodeURIComponent(email)}`
-//       );
-//       const data = await response.json();
-//       if (data.exists) {
-//         setEmailError("Email already exists"); // Если email уже существует, устанавливаем ошибку
-//       } else {
-//         setEmailError(""); // Если email уникален, очищаем ошибку
+//  if (name === "email") {
+//       setEmail(value);
+//       if (views.length > 0) {
+//         // Показать ошибку, так как условие выполняется после изменения email
+//         setErrors({
+//           ...errors,
+//           email: "Error message here",
+//         });
 //       }
-//     } catch (error) {
-//       console.error("Error checking email:", error);
-//       setEmailError("Error checking email");
 //     }
-//   };
 
-//   // Обработчик изменений в поле email
-//   const handleEmailChange = (e) => {
-//     const { value } = e.target;
-//     setFormData({
-//       ...formData,
-//       email: value,
-//     });
-//     setEmailError(""); // При изменении email очищаем ошибку
+//     //   const differenceInMs =
+//     //     selectedDateObj.getTime() - currentDateObj.getTime(); // Разница в миллисекундах
+//     //   const differenceInDays = differenceInMs / (1000 * 60 * 60 * 24); // Разница в днях
+//     console.log(email);
+//     if (name === "dateOfBirth") {
+//       const currentDate = new Date().toISOString().split("T")[0];
+//       const selectedDate = value;
+
+//       const currentDateObj = new Date(currentDate);
+//       const selectedDateObj = new Date(selectedDate);
+//       const differenceInMs =
+//         selectedDateObj.getTime() - currentDateObj.getTime();
+//       console.log("differenceInDays=", differenceInMs);
+//       console.log("currentDate:", currentDate);
+//       console.log("selectedDate:", selectedDate);
+//       if (differenceInMs > 0) {
+//         setErrors({
+//           ...errors,
+//           [name]: "Error!   ",
+//         });
+//       } else {
+//         setErrors({
+//           ...errors,
+//           [name]: "",
+//         });
+//       }
+//     }
 //   };

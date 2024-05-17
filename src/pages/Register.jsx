@@ -74,6 +74,7 @@ const Register = () => {
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState({});
   const [views, setViews] = useState([]);
+  const [futureDate, setFutureDate] = useState(false);
   // const [email, setEmail] = useState("");
 
   const fetchViews = async () => {
@@ -113,10 +114,15 @@ const Register = () => {
       if (differenceInMs > 0) {
         setErrors({
           ...errors,
-          [name]: "",
+          [name]: "Date of birth cannot be in the future",
         });
+        setFutureDate(true);
       } else {
-        setErrors({ ...errors, [name]: "" });
+        setErrors({
+          ...errors,
+          [name]: "   ",
+        });
+        setFutureDate(false);
       }
     }
   };
@@ -124,12 +130,28 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const currentDate = new Date().toISOString().split("T")[0];
+    const selectedDate = formData.dateOfBirth;
+
+    const currentDateObj = new Date(currentDate);
+    const selectedDateObj = new Date(selectedDate);
+    const differenceInMs = selectedDateObj.getTime() - currentDateObj.getTime();
+    console.log("differenceInDays=", differenceInMs);
+    console.log("currentDate:", currentDate);
+    console.log("selectedDate:", selectedDate);
+
+    if (differenceInMs > 0) {
+      toast.error("Date of birth cannot be in the future.", {
+        duration: 5000,
+      });
+      return;
+    }
+
     const filteredEmail = views.filter((view) => view.email === formData.email);
 
     if (filteredEmail.length > 0) {
       toast.error("User with this email is already registered.", {
         duration: 5000,
-        position: "top-right",
       });
       return;
     }
@@ -152,7 +174,7 @@ const Register = () => {
       setSuccess(true);
       toast.success("Successfully adding a user!", {
         duration: 4000,
-        position: "top-right",
+        position: "center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -163,7 +185,8 @@ const Register = () => {
       });
       toast.success("Thank you for registering.", {
         duration: 4000,
-        position: "top-right",
+        // position: "top-right",
+        position: "center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -206,7 +229,7 @@ const Register = () => {
               name="fullName"
               value={formData.fullName}
               onChange={handleChange}
-              pattern="/^[A-Z][a-zA-ZÀ-ÿ'-]+( [A-Z][a-zA-ZÀ-ÿ'-]+)*$/"
+              pattern="/^[a-zA-ZÀ-ÿ'-]+( [a-zA-ZÀ-ÿ'-]+)*$/"
               placeholder="Anna Perfler"
               required
             />
@@ -232,13 +255,14 @@ const Register = () => {
               value={formData.dateOfBirth}
               onChange={handleChange}
               required
+              style={{ color: futureDate ? "red" : "inherit" }}
             />
-            {errors.dateOfBirth && <span>{errors.dateOfBirth}</span>}
-            {errors.dateOfBirth === "" && (
-              <span style={{ color: "red" }}>
-                Date of birth cannot be in the future
-              </span>
-            )}
+            <div style={{ height: 20 }}>
+              {errors.dateOfBirth && (
+                <span style={{ color: "red" }}>{errors.dateOfBirth}</span>
+              )}
+              {!errors.dateOfBirth && <span>&nbsp;</span>}
+            </div>
           </Label>
         </DivForm>
 
