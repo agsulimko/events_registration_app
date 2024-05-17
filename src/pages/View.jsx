@@ -1,6 +1,6 @@
 // View.jsx
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 import {
   H1,
@@ -41,11 +41,13 @@ const LinkGoBack = styled(Link)`
   padding-left: 0px;
 `;
 const View = () => {
+  const location = useLocation();
   const { viewId } = useParams();
   const [views, setViews] = useState([]);
   const [searchName, setSearchName] = useState("");
   const [searchEmail, setSearchEmail] = useState("");
   const [filteredViews, setFilteredViews] = useState([]);
+  const { title } = location.state;
   const fetchViews = async (page) => {
     try {
       const results = await getViews();
@@ -76,7 +78,10 @@ const View = () => {
   return (
     <Section>
       <div>
-        <H1>Awesome Event participants</H1>
+        <H1>
+          Awesome Event participants{" "}
+          <span style={{ color: "#3470ff" }}>{title}</span>{" "}
+        </H1>
         <LinkGoBack to="/">
           <Span>
             <SvgGoBack className={"css.svgGoBack"}>

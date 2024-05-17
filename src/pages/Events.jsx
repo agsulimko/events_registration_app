@@ -42,7 +42,7 @@ const Events = () => {
     parseInt(localStorage.getItem("currentPage"), 10) || 1
   );
   const [sortBy, setSortBy] = useState("");
-  const [resetFilters, setResetFilters] = useState(false); //
+  const [resetFilters, setResetFilters] = useState(false);
 
   const fetchAllEvents = async (page) => {
     try {
@@ -58,6 +58,8 @@ const Events = () => {
     try {
       const results = await getEvents(page, sortBy);
       setEvents(results);
+      console.log(results);
+
       setTotalPages(Math.ceil(lengthArray / results.length));
     } catch (err) {
       console.log(err.message);
@@ -133,13 +135,20 @@ const Events = () => {
                   <DivRegisterView>
                     <LinkRegisterView
                       to={`/register/${event.id}`}
-                      state={{ from: location }}
+                      state={{
+                        from: location,
+                        title: event.title,
+                      }}
                     >
                       Register
                     </LinkRegisterView>
+
                     <LinkRegisterView
                       to={`/view/${event.id}`}
-                      state={{ from: location }}
+                      state={{
+                        from: location,
+                        title: event.title,
+                      }}
                     >
                       View
                     </LinkRegisterView>

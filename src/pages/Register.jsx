@@ -1,7 +1,7 @@
-// // Register.jsx
+// Register.jsx
 
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import {
   H1,
   H2,
@@ -63,6 +63,7 @@ const LinkReturn = styled(Link)`
 `;
 
 const Register = () => {
+  const location = useLocation();
   const { registerId } = useParams();
   const [formData, setFormData] = useState({
     fullName: "",
@@ -75,8 +76,9 @@ const Register = () => {
   const [errors, setErrors] = useState({});
   const [views, setViews] = useState([]);
   const [futureDate, setFutureDate] = useState(false);
-  // const [email, setEmail] = useState("");
+  const { title } = location.state;
 
+  console.log(title);
   const fetchViews = async () => {
     try {
       const results = await getViews();
@@ -216,7 +218,9 @@ const Register = () => {
 
   return (
     <Section>
-      <H1>Event registration</H1>
+      <H1>
+        Event registration <span style={{ color: "#3470ff" }}>{title}</span>
+      </H1>
       <Form onSubmit={handleSubmit}>
         <DivForm>
           <Label>
