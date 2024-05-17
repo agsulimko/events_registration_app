@@ -58,7 +58,7 @@ const Events = () => {
     try {
       const results = await getEvents(page, sortBy);
       setEvents(results);
-      console.log(results);
+      // console.log(results);
 
       setTotalPages(Math.ceil(lengthArray / results.length));
     } catch (err) {
@@ -76,7 +76,7 @@ const Events = () => {
       setCurrentPage(currentPageFromStorage);
     }
     fetchAllEvents();
-    // fetchEvents(currentPage, "title");
+
     fetchEvents(currentPage, sortBy);
     // eslint-disable-next-line
   }, [currentPage, totalPages, sortBy, resetFilters]);

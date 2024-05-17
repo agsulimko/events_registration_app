@@ -75,13 +75,16 @@ const Register = () => {
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState({});
   const [views, setViews] = useState([]);
+  const [alleViews, setAlleViews] = useState([]);
+
   const [futureDate, setFutureDate] = useState(false);
   const { title } = location.state;
 
-  console.log(title);
   const fetchViews = async () => {
     try {
       const results = await getViews();
+      // console.log(results);
+      setAlleViews(results);
       setViews(results.filter((view) => view.event.includes(registerId)));
     } catch (err) {
       console.log(err.message);
@@ -131,6 +134,8 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(alleViews);
+    console.log(formData.email);
 
     const currentDate = new Date().toISOString().split("T")[0];
     const selectedDate = formData.dateOfBirth;
@@ -173,7 +178,7 @@ const Register = () => {
       setSuccess(true);
       toast.success("Successfully adding a user!", {
         duration: 4000,
-        position: "center",
+        position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -185,7 +190,7 @@ const Register = () => {
       toast.success("Thank you for registering.", {
         duration: 4000,
 
-        position: "center",
+        position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -230,7 +235,7 @@ const Register = () => {
               name="fullName"
               value={formData.fullName}
               onChange={handleChange}
-              pattern="/^[a-zA-ZÀ-ÿ'-]+( [a-zA-ZÀ-ÿ'-]+)*$/"
+              // pattern="^[a-zA-ZÀ-ÿ'-]+( [a-zA-ZÀ-ÿ'-]+)*$"
               placeholder="Anna Perfler"
               required
             />

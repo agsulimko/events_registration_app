@@ -2,6 +2,25 @@
 import axios from 'axios';
 axios.defaults.baseURL = 'https://66430a433c01a059ea213b70.mockapi.io/api';
 
+export const patchViews = async (id, event) => {
+  const url = new URL(`/users/${id}`, axios.defaults.baseURL);
+
+  try {
+    const response = await axios.patch(url.toString(), {
+      // fullName: fullName,
+      // email: email,
+      // dateOfBirth: dateOfBirth,
+      // whereHeard: whereHeard,
+      event: event,
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch users:', error.message);
+    throw error;
+  }
+};
+
 export const getAllEvents = async () => {
   const url = new URL('/events', axios.defaults.baseURL);
 

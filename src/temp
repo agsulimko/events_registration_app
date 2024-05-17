@@ -1,0 +1,676 @@
+[
+  {
+    "fullName": "Artem",
+    "email": "s.g.sulymko@gmail.com",
+    "dateOfBirth": "9090-09-09",
+    "whereHeard": "ertretr",
+    "event": [
+      "2"
+    ],
+    "id": "4"
+  },
+  {
+    "fullName": "Artem",
+    "email": "s.g.sulymko@gmail.com",
+    "dateOfBirth": "4545-05-04",
+    "whereHeard": "qwe",
+    "event": [
+      "1",
+      "2"
+    ],
+    "id": "5"
+  },
+  {
+    "fullName": "Sulimko",
+    "email": "s.g.sulymko@gmail.com",
+    "dateOfBirth": "7878-08-07",
+    "whereHeard": "qwe",
+    "event": [
+      "4"
+    ],
+    "id": "6"
+  },
+  {
+    "fullName": "Sulimko",
+    "email": "s.g.sulymko@gmail.com",
+    "dateOfBirth": "7878-08-07",
+    "whereHeard": "qwe",
+    "event": [
+      "8",
+      "2"
+    ],
+    "id": "7"
+  },
+  {
+    "fullName": "Sulimko",
+    "email": "s.g.sulymko@gmail.com",
+    "dateOfBirth": "7878-08-07",
+    "whereHeard": "qwe",
+    "event": [
+      "3",
+      "2"
+    ],
+    "id": "8"
+  },
+  {
+    "fullName": "Artem",
+    "email": "a.g.sulimko@gmail.com",
+    "dateOfBirth": "1212-12-12",
+    "whereHeard": "Friends",
+    "event": [
+      "3"
+    ],
+    "id": "9"
+  },
+  {
+    "fullName": "Artem",
+    "email": "a.g.sulimko@gmail.com",
+    "dateOfBirth": "1212-12-12",
+    "whereHeard": "Friends",
+    "event": [
+      "3",
+      "2"
+    ],
+    "id": "10"
+  },
+  {
+    "fullName": "Artem Sulimko",
+    "email": "s.s.sulymko@gmail.com",
+    "dateOfBirth": "11111-12-12",
+    "whereHeard": "Found myself",
+    "event": [
+      "9"
+    ],
+    "id": "11"
+  },
+  {
+    "fullName": "Artem Sulimko",
+    "email": "s.s.sulymko@gmail.com",
+    "dateOfBirth": "11111-12-12",
+    "whereHeard": "Found myself",
+    "event": [
+      "9"
+    ],
+    "id": "12"
+  },
+  {
+    "fullName": "Artem Sulimko",
+    "email": "s.g.sulymko@gmail.com",
+    "dateOfBirth": "2024-05-01",
+    "whereHeard": "Social media",
+    "event": [
+      "1"
+    ],
+    "id": "13"
+  },
+  {
+    "fullName": "Artem Sulimko",
+    "email": "s.g.sulymko@gmail.com",
+    "dateOfBirth": "2024-05-01",
+    "whereHeard": "Social media",
+    "event": [
+      "1"
+    ],
+    "id": "14"
+  },
+  {
+    "fullName": "Artem Sulimko",
+    "email": "s.g.sulymko@gmail.com",
+    "dateOfBirth": "2024-05-01",
+    "whereHeard": "Social media",
+    "event": [
+      "1"
+    ],
+    "id": "15"
+  },
+  {
+    "fullName": "Artem",
+    "email": "sulimko@gmail.com",
+    "dateOfBirth": "1289-09-09",
+    "whereHeard": "Friends",
+    "event": [
+      "71"
+    ],
+    "id": "16"
+  },
+  {
+    "fullName": "qqqqqq",
+    "email": "s.s.sulymko@gmail.com",
+    "dateOfBirth": "0457-08-08",
+    "whereHeard": "Found myself",
+    "event": [
+      "74"
+    ],
+    "id": "17"
+  },
+  {
+    "fullName": "asdas",
+    "email": "s.f.sulymko@gmail.com",
+    "dateOfBirth": "5656-09-09",
+    "whereHeard": "Found myself",
+    "event": [
+      "74"
+    ],
+    "id": "18"
+  },
+  {
+    "fullName": "asdas",
+    "email": "s.f.sulymko@gmail.com",
+    "dateOfBirth": "5656-09-09",
+    "whereHeard": "Found myself",
+    "event": [
+      "74"
+    ],
+    "id": "19"
+  },
+  {
+    "fullName": "asdas",
+    "email": "s.f.sulymko@gmail.com",
+    "dateOfBirth": "5656-09-09",
+    "whereHeard": "Found myself",
+    "event": [
+      "74"
+    ],
+    "id": "20"
+  },
+  {
+    "fullName": "qqqqqq",
+    "email": "filatov@rambler.com",
+    "dateOfBirth": "8989-09-08",
+    "whereHeard": "Friends",
+    "event": [
+      "1"
+    ],
+    "id": "21"
+  },
+  {
+    "fullName": "Dgon Dir",
+    "email": "dgon@day.com",
+    "dateOfBirth": "7877-03-31",
+    "whereHeard": "Found myself",
+    "event": [
+      "1"
+    ],
+    "id": "22"
+  },
+  {
+    "fullName": "Dgon Dir",
+    "email": "dgon@day.com",
+    "dateOfBirth": "7877-03-31",
+    "whereHeard": "Found myself",
+    "event": [
+      "1"
+    ],
+    "id": "23"
+  },
+  {
+    "fullName": "Dasdas Der",
+    "email": "mart@gmail.com",
+    "dateOfBirth": "6766-07-06",
+    "whereHeard": "Found myself",
+    "event": [
+      "1"
+    ],
+    "id": "24"
+  },
+  {
+    "fullName": "Eva Blinken",
+    "email": "blinken@main.com",
+    "dateOfBirth": "1212-05-04",
+    "whereHeard": "",
+    "event": [
+      "1"
+    ],
+    "id": "25"
+  },
+  {
+    "fullName": "Eva Blinken",
+    "email": "blinken@main.com",
+    "dateOfBirth": "1212-05-04",
+    "whereHeard": "",
+    "event": [
+      "1"
+    ],
+    "id": "25"
+  },
+  {
+    "fullName": "Bill Fisch",
+    "email": "fisch@freier.com",
+    "dateOfBirth": "6655-06-05",
+    "whereHeard": "Social media",
+    "event": [
+      "1"
+    ],
+    "id": "26"
+  },
+  {
+    "fullName": "Anna Novik",
+    "email": "novik@gmail.com",
+    "dateOfBirth": "3333-04-23",
+    "whereHeard": "Friends",
+    "event": [
+      "1"
+    ],
+    "id": "27"
+  },
+  {
+    "fullName": "Anna Novik",
+    "email": "novik@gmail.com",
+    "dateOfBirth": "3333-04-23",
+    "whereHeard": "Friends",
+    "event": [
+      "1"
+    ],
+    "id": "28"
+  },
+  {
+    "fullName": "Donnald Tramp",
+    "email": "tramp@gmail.com",
+    "dateOfBirth": "3666-02-12",
+    "whereHeard": "Social media",
+    "event": [
+      "4"
+    ],
+    "id": "29"
+  },
+  {
+    "fullName": "Sergey Plot",
+    "email": "sulimko@gmail.com",
+    "dateOfBirth": "4564-05-04",
+    "whereHeard": "Social media",
+    "event": [
+      "4"
+    ],
+    "id": "30"
+  },
+  {
+    "fullName": "qqqqqq",
+    "email": "s.f.sulymko@gmail.com",
+    "dateOfBirth": "5454-04-12",
+    "whereHeard": "Found myself",
+    "event": [
+      "4"
+    ],
+    "id": "31"
+  },
+  {
+    "fullName": "Artem",
+    "email": "filatova1@rambler.ru",
+    "dateOfBirth": "4322-03-31",
+    "whereHeard": "Social media",
+    "event": [
+      "6"
+    ],
+    "id": "32"
+  },
+  {
+    "fullName": "Artem",
+    "email": "sulimko@gmail.com",
+    "dateOfBirth": "3122-02-23",
+    "whereHeard": "Friends",
+    "event": [
+      "7"
+    ],
+    "id": "33"
+  },
+  {
+    "fullName": "Tom Kruz",
+    "email": "sulimko@gmail.com",
+    "dateOfBirth": "3333-03-12",
+    "whereHeard": "Friends",
+    "event": [
+      "2"
+    ],
+    "id": "34"
+  },
+  {
+    "fullName": "Tom Kruz",
+    "email": "sulimko@gmail.com",
+    "dateOfBirth": "3333-03-12",
+    "whereHeard": "Friends",
+    "event": [
+      "2"
+    ],
+    "id": "35"
+  },
+  {
+    "fullName": "Lena Antonova",
+    "email": "s.f.sulymko@gmail.com",
+    "dateOfBirth": "6444-05-04",
+    "whereHeard": "Friends",
+    "event": [
+      "1"
+    ],
+    "id": "36"
+  },
+  {
+    "fullName": "Artem",
+    "email": "filatova16@rambler.ru",
+    "dateOfBirth": "4333-03-12",
+    "whereHeard": "Social media",
+    "event": [
+      "1"
+    ],
+    "id": "37"
+  },
+  {
+    "fullName": "Niko Don",
+    "email": "niko@df.tup",
+    "dateOfBirth": "4566-12-12",
+    "whereHeard": "Friends",
+    "event": [
+      "6"
+    ],
+    "id": "38"
+  },
+  {
+    "fullName": "www",
+    "email": "s.f.sulymko@gmail.com",
+    "dateOfBirth": "3222-02-23",
+    "whereHeard": "Friends",
+    "event": [
+      "5"
+    ],
+    "id": "39"
+  },
+  {
+    "fullName": "Sulimko",
+    "email": "s.g.sulymko@gmail.com",
+    "dateOfBirth": "1111-12-12",
+    "whereHeard": "Friends",
+    "event": [
+      "5"
+    ],
+    "id": "40"
+  },
+  {
+    "fullName": "Sulimko",
+    "email": "s.g.sulymko@gmail.com",
+    "dateOfBirth": "1111-12-12",
+    "whereHeard": "Friends",
+    "event": [
+      "5"
+    ],
+    "id": "41"
+  },
+  {
+    "fullName": "www",
+    "email": "sulimko@gmail.com",
+    "dateOfBirth": "45656-03-12",
+    "whereHeard": "Social media",
+    "event": [
+      "7"
+    ],
+    "id": "42"
+  },
+  {
+    "fullName": "asdas",
+    "email": "s.s.sulymko@gmail.com",
+    "dateOfBirth": "4544-04-23",
+    "whereHeard": "Social media",
+    "event": [
+      "10"
+    ],
+    "id": "43"
+  },
+  {
+    "fullName": "Artem Sulimko",
+    "email": "sulimko@gmail.com",
+    "dateOfBirth": "5644-04-23",
+    "whereHeard": "Social media",
+    "event": [
+      "11"
+    ],
+    "id": "44"
+  },
+  {
+    "fullName": "www",
+    "email": "s.s.sulymko@gmail.com",
+    "dateOfBirth": "2232-03-12",
+    "whereHeard": "Friends",
+    "event": [
+      "11"
+    ],
+    "id": "45"
+  },
+  {
+    "fullName": "asdas",
+    "email": "s.f.sulymko@gmail.com",
+    "dateOfBirth": "3543-05-23",
+    "whereHeard": "Friends",
+    "event": [
+      "12"
+    ],
+    "id": "46"
+  },
+  {
+    "fullName": "Kuk",
+    "email": "fggg@fgf",
+    "dateOfBirth": "3222-03-12",
+    "whereHeard": "Friends",
+    "event": [
+      "1"
+    ],
+    "id": "47"
+  },
+  {
+    "fullName": "ertet",
+    "email": "s.k.sulymko@gmail.com",
+    "dateOfBirth": "7888-04-04",
+    "whereHeard": "Social media",
+    "event": [
+      "2"
+    ],
+    "id": "48"
+  },
+  {
+    "fullName": "Anna Novik",
+    "email": "ivanna@asd.com",
+    "dateOfBirth": "2024-05-14",
+    "whereHeard": "Friends",
+    "event": [
+      "13"
+    ],
+    "id": "49"
+  },
+  {
+    "fullName": "So",
+    "email": "qwqwww@fgf.jj",
+    "dateOfBirth": "2024-05-25",
+    "whereHeard": "Friends",
+    "event": [
+      "26"
+    ],
+    "id": "50"
+  },
+  {
+    "fullName": "Мар'яна Кужель",
+    "email": "a.f.sulymko@gmail.com",
+    "dateOfBirth": "2024-07-19",
+    "whereHeard": "Friends",
+    "event": [
+      "27"
+    ],
+    "id": "51"
+  },
+  {
+    "fullName": "Leon",
+    "email": "leon@com.com",
+    "dateOfBirth": "2024-05-17",
+    "whereHeard": "Friends",
+    "event": [
+      "1"
+    ],
+    "id": "52"
+  },
+  {
+    "fullName": "Moon Kit",
+    "email": "moon@link.com",
+    "dateOfBirth": "2024-06-09",
+    "whereHeard": "Social media",
+    "event": [
+      "5"
+    ],
+    "id": "53"
+  },
+  {
+    "fullName": "Anna Novik",
+    "email": "ivanna@asd.com",
+    "dateOfBirth": "2024-06-13",
+    "whereHeard": "Friends",
+    "event": [
+      "11"
+    ],
+    "id": "54"
+  },
+  {
+    "fullName": "Anna Novik",
+    "email": "anna@yui.com",
+    "dateOfBirth": "2024-08-21",
+    "whereHeard": "Found myself",
+    "event": [
+      "2"
+    ],
+    "id": "55"
+  },
+  {
+    "fullName": "Anna Novik",
+    "email": "novik@gmail.com",
+    "dateOfBirth": "2024-06-09",
+    "whereHeard": "Social media",
+    "event": [
+      "6"
+    ],
+    "id": "56"
+  },
+  {
+    "fullName": "Anna Novik",
+    "email": "s.s.sulymko@gmail.com",
+    "dateOfBirth": "2025-02-16",
+    "whereHeard": "Friends",
+    "event": [
+      "5"
+    ],
+    "id": "57"
+  },
+  {
+    "fullName": "Anna Novik",
+    "email": "s.f.sulymko@gmail.com",
+    "dateOfBirth": "2024-07-30",
+    "whereHeard": "Social media",
+    "event": [
+      "3"
+    ],
+    "id": "58"
+  },
+  {
+    "fullName": "Artem",
+    "email": "s.s.sulymko@gmail.com",
+    "dateOfBirth": "2024-05-28",
+    "whereHeard": "Social media",
+    "event": [
+      "2"
+    ],
+    "id": "59"
+  },
+  {
+    "fullName": "Anna Novik",
+    "email": "s.s.sulymko@gmail.com",
+    "dateOfBirth": "2024-02-09",
+    "whereHeard": "Social media",
+    "event": [
+      "7"
+    ],
+    "id": "60"
+  },
+  {
+    "fullName": "Anna Novik",
+    "email": "s.s.sulymko@gmail.com",
+    "dateOfBirth": "2024-02-09",
+    "whereHeard": "Social media",
+    "event": [
+      "7"
+    ],
+    "id": "61"
+  },
+  {
+    "fullName": "Sulimko",
+    "email": "s.f.sulymko@gmail.com",
+    "dateOfBirth": "2024-06-09",
+    "whereHeard": "Friends",
+    "event": [
+      "2"
+    ],
+    "id": "62"
+  },
+  {
+    "fullName": "Anna Novik",
+    "email": "sulimko@gmail.com",
+    "dateOfBirth": "2024-05-15",
+    "whereHeard": "Social media",
+    "event": [
+      "2"
+    ],
+    "id": "63"
+  },
+  {
+    "fullName": "Ella Nova",
+    "email": "ella@meta.ua",
+    "dateOfBirth": "2024-05-01",
+    "whereHeard": "Social media",
+    "event": [
+      "27"
+    ],
+    "id": "64"
+  },
+  {
+    "fullName": "Ella Donner",
+    "email": "elen@com.ua",
+    "dateOfBirth": "2024-05-14",
+    "whereHeard": "Social media",
+    "event": [
+      "27"
+    ],
+    "id": "65"
+  },
+  {
+    "fullName": "Alex Ford",
+    "email": "futer@com.at",
+    "dateOfBirth": "2024-04-30",
+    "whereHeard": "Social media",
+    "event": [
+      "26"
+    ],
+    "id": "66"
+  },
+  {
+    "fullName": "Elvis Presli",
+    "email": "lina@gid.com",
+    "dateOfBirth": "2024-05-14",
+    "whereHeard": "Social media",
+    "event": [
+      "27"
+    ],
+    "id": "67"
+  },
+  {
+    "fullName": "Petr Novik",
+    "email": "petr@mail.com",
+    "dateOfBirth": "2024-02-02",
+    "whereHeard": "Social media",
+    "event": [
+      "4"
+    ],
+    "id": "68"
+  },
+  {
+    "fullName": "Petr Novik",
+    "email": "petr@mail.com",
+    "dateOfBirth": "2024-02-02",
+    "whereHeard": "Social media",
+    "event": [
+      "4"
+    ],
+    "id": "69"
+  }
+]
