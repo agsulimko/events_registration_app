@@ -136,9 +136,6 @@ const Register = () => {
     const currentDateObj = new Date(currentDate);
     const selectedDateObj = new Date(selectedDate);
     const differenceInMs = selectedDateObj.getTime() - currentDateObj.getTime();
-    console.log("differenceInDays=", differenceInMs);
-    console.log("currentDate:", currentDate);
-    console.log("selectedDate:", selectedDate);
 
     if (differenceInMs > 0) {
       toast.error("Date of birth cannot be in the future.", {
@@ -185,7 +182,7 @@ const Register = () => {
       });
       toast.success("Thank you for registering.", {
         duration: 4000,
-        // position: "top-right",
+
         position: "center",
         autoClose: 5000,
         hideProgressBar: false,
