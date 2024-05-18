@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 const H1 = styled.h1`
   font-size: 24px;
-  margin: 40px 0 40px 0;
+  /* margin: 40px 0 40px 0; */
+  padding-top: 50px;
 `;
 const H2 = styled.h1`
   margin-top: 100px;

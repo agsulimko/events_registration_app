@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const Div = styled.div`
-  /* max-width: 1440px;
-  position: 'fixed'; */
   padding-top: 75px;
+
+  background-color: white;
 `;
 const DivEvents = styled.div`
   display: flex;
@@ -28,8 +28,6 @@ const H1 = styled.h1`
   top: 400px;
   font-size: 24px;
   margin: 0;
-  /* margin: 40px 0 40px 0; */
-  /* padding-left: 12px; */
 `;
 
 const H2 = styled.h2``;
@@ -88,18 +86,11 @@ const ButtonSort = styled.button`
 const DivButton = styled.div`
   display: flex;
   padding-right: 460px;
-  /* width: 1400px; */
-  /* position: fixed; */
-  /* margin-bottom: 8px;
-  gap: 200px;
-  align-items: center;
-  padding-left: 10px; */
-  /* background-color: azure; */
+
   background-color: rgba(255, 255, 255, 0.9);
   gap: 200px;
   align-items: center;
   padding-left: 10px;
-  /* margin: -54px; */
 `;
 const DivSortButton = styled.div`
   display: flex;

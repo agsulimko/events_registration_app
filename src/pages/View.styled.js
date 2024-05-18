@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 const H1 = styled.h1`
-  left: 420px;
-  top: 400px;
+  /* left: 420px;
+  top: 400px; */
   font-size: 24px;
-  margin: 40px 0 40px 0;
+  padding-top: 50px;
+  /* margin: 40px 0 40px 0; */
+
   padding-left: 12px;
+  margin-bottom: 35px;
 `;
 const DivViews = styled.div`
   display: flex;

@@ -22,7 +22,7 @@ export const getEvents = async (page, sortBy) => {
   if (page) {
     url.searchParams.append('page', page);
   }
-  url.searchParams.append('limit', 12);
+  url.searchParams.append('limit', 40);
   if (sortBy) {
     url.searchParams.append('sortBy', sortBy);
   }
