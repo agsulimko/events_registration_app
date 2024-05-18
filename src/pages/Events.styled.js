@@ -1,9 +1,16 @@
 import styled from 'styled-components';
+
+const Div = styled.div`
+  /* max-width: 1440px;
+  position: 'fixed'; */
+  padding-top: 75px;
+`;
 const DivEvents = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
   justify-content: center;
+  padding-top: 65px;
 `;
 const DivEvent = styled.div`
   border: 1px solid black;
@@ -20,9 +27,9 @@ const H1 = styled.h1`
   left: 420px;
   top: 400px;
   font-size: 24px;
-
-  margin: 40px 0 40px 0;
-  padding-left: 12px;
+  margin: 0;
+  /* margin: 40px 0 40px 0; */
+  /* padding-left: 12px; */
 `;
 
 const H2 = styled.h2``;
@@ -80,11 +87,19 @@ const ButtonSort = styled.button`
 `;
 const DivButton = styled.div`
   display: flex;
+  padding-right: 460px;
+  /* width: 1400px; */
   /* position: fixed; */
-  margin-left: 11px;
+  /* margin-bottom: 8px;
   gap: 200px;
   align-items: center;
-  /* margin-bottom: 40px; */
+  padding-left: 10px; */
+  /* background-color: azure; */
+  background-color: rgba(255, 255, 255, 0.9);
+  gap: 200px;
+  align-items: center;
+  padding-left: 10px;
+  /* margin: -54px; */
 `;
 const DivSortButton = styled.div`
   display: flex;
@@ -124,5 +139,6 @@ export {
   ButtonSort,
   DivButton,
   DivSortButton,
+  Div,
   BackToTopButton,
 };
