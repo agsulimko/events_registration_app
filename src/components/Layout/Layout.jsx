@@ -16,6 +16,7 @@ const LogoLink = styled(Link)`
   gap: 20px;
 `;
 const StyledLink = styled(NavLink)`
+  /* margin-right: 676px; */
   padding: 12px 30px;
   border-radius: 5px;
   text-decoration: none;
@@ -24,7 +25,7 @@ const StyledLink = styled(NavLink)`
 
   &.active {
     color: white;
-
+    margin-right: 676px;
     background-color: #3470ff;
   }
 `;

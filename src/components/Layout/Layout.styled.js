@@ -10,7 +10,7 @@ const Header = styled.header`
   font-family: 'Manrope', sans-serif;
   display: flex;
   align-items: center;
-
+  /* position: fixed; */
   gap: 280px;
   padding: 8px 0;
   justify-content: flex-start;

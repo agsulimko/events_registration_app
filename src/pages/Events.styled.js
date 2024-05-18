@@ -80,14 +80,34 @@ const ButtonSort = styled.button`
 `;
 const DivButton = styled.div`
   display: flex;
+  /* position: fixed; */
   margin-left: 11px;
   gap: 200px;
-  margin-bottom: 40px;
+  align-items: center;
+  /* margin-bottom: 40px; */
 `;
 const DivSortButton = styled.div`
   display: flex;
-
+  align-items: center;
   gap: 50px;
+`;
+
+const BackToTopButton = styled.button`
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  display: ${props => (props.visible ? 'block' : 'none')};
+  background-color: #3470ff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 50px;
+  text-align: center;
+  z-index: 1000;
 `;
 
 export {
@@ -104,4 +124,5 @@ export {
   ButtonSort,
   DivButton,
   DivSortButton,
+  BackToTopButton,
 };
