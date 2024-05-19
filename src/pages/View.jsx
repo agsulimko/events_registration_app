@@ -1,3 +1,4 @@
+// View.jsx
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 
@@ -18,6 +19,7 @@ import {
 import { getViews } from "api/api";
 import sprite from "../image/sprite.svg";
 import styled from "styled-components";
+import Chart from "../components/Chart/Chart";
 
 const LinkGoBack = styled(Link)`
   color: #3470ff;
@@ -47,14 +49,18 @@ const View = () => {
   const [searchEmail, setSearchEmail] = useState("");
   const [filteredViews, setFilteredViews] = useState([]);
   const { title } = location.state;
-  const fetchViews = async (page) => {
+  // const [lengthArrayEvent, setLengthArrayEvent] = useState([]);
+
+  const fetchViews = async () => {
     try {
       const results = await getViews();
 
       const filteredViews = results.filter((view) =>
         view.event.includes(viewId)
       );
+
       setViews(filteredViews);
+      // setLengthArrayEvent(filteredViews.length);
     } catch (err) {
       console.log(err.message);
     }
@@ -78,8 +84,8 @@ const View = () => {
     <Section>
       <div>
         <H1>
-          Awesome Event participants{" "}
-          <span style={{ color: "#3470ff" }}>{title}</span>{" "}
+          Awesome Event participants
+          <span style={{ color: "#3470ff" }}> {title}</span>
         </H1>
         <LinkGoBack to="/">
           <Span>
@@ -115,14 +121,19 @@ const View = () => {
         {filteredViews.length > 0 ? (
           filteredViews.map((view, index) => (
             <DivView key={index}>
-              <FullName>{view.fullName}</FullName>
               <Email>{view.email}</Email>
+              <FullName>{view.fullName}</FullName>
             </DivView>
           ))
         ) : (
           <PView>No views found!!!</PView>
         )}
       </DivViews>
+      <div style={{ width: 500 }}>
+        <H1>Chart the amount of registrations per day for the given event.</H1>
+        <Chart data={filteredViews.length} />
+        {/* Other participant details */}
+      </div>
     </Section>
   );
 };

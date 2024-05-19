@@ -75,7 +75,7 @@ const Register = () => {
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState({});
   const [views, setViews] = useState([]);
-  const [alleViews, setAlleViews] = useState([]);
+  // const [alleViews, setAlleViews] = useState([]);
 
   const [futureDate, setFutureDate] = useState(false);
   const { title } = location.state;
@@ -84,7 +84,7 @@ const Register = () => {
     try {
       const results = await getViews();
       // console.log(results);
-      setAlleViews(results);
+      // setAlleViews(results);
       setViews(results.filter((view) => view.event.includes(registerId)));
     } catch (err) {
       console.log(err.message);
@@ -111,6 +111,7 @@ const Register = () => {
 
     if (name === "dateOfBirth") {
       const currentDate = new Date().toISOString().split("T")[0];
+      console.log(currentDate);
       const selectedDate = value;
       const currentDateObj = new Date(currentDate);
       const selectedDateObj = new Date(selectedDate);
@@ -134,8 +135,8 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(alleViews);
-    console.log(formData.email);
+    // console.log(alleViews);
+    // console.log(formData.email);
 
     const currentDate = new Date().toISOString().split("T")[0];
     const selectedDate = formData.dateOfBirth;

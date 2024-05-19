@@ -1,0 +1,64 @@
+import React from "react";
+import { Bar } from "react-chartjs-2";
+
+const Chart = ({ data }) => {
+  const chartData = {
+    labels: ["Amount of registrations"], // Метка для оси X
+    datasets: [
+      {
+        label: "Number of Participants",
+        data: [data],
+        backgroundColor: "rgba(85, 137, 235, 0.5)",
+        borderColor: "#b32727",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  return <Bar data={chartData} />;
+};
+
+export default Chart;
+
+// ============================================
+// lineal Chart
+// import React from "react";
+// import { Line } from "react-chartjs-2";
+// import {
+//   Chart as ChartJS,
+//   CategoryScale,
+//   LinearScale,
+//   PointElement,
+//   LineElement,
+//   Title,
+//   Tooltip,
+//   Legend,
+// } from "chart.js";
+
+// ChartJS.register(
+//   CategoryScale,
+//   LinearScale,
+//   PointElement,
+//   LineElement,
+//   Title,
+//   Tooltip,
+//   Legend
+// );
+
+// const Chart = ({ data }) => {
+//   const chartData = {
+//     labels: ["Amount of registrations"], // Метка для оси X
+//     datasets: [
+//       {
+//         label: "Number of Participants", // Метка для легенды
+//         data: [data], // Передаем массив данных с одним элементом
+//         borderColor: "rgba(75, 192, 192, 1)",
+//         backgroundColor: "rgba(75, 192, 192, 0.2)",
+//       },
+//     ],
+//   };
+
+//   return <Line data={chartData} />;
+// };
+
+// export default Chart;
