@@ -1,5 +1,6 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
+// eslint-disable-next-line no-unused-vars
 import ChartJS from "chart.js/auto";
 
 const Chart = ({ data }) => {
@@ -15,7 +16,7 @@ const Chart = ({ data }) => {
       },
     ],
   };
-
+  // console.log(ChartJS);
   return <Bar data={chartData} />;
 };
 
