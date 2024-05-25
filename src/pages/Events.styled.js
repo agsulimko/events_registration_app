@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 const Div = styled.div`
-  padding-top: 75px;
-
+  padding-top: 55px;
   background-color: white;
 `;
 const DivEvents = styled.div`
@@ -47,8 +46,7 @@ const PaginationButton = styled.button`
   margin: 0 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  /* background-color: transparent;
-  color: black; */
+
   background-color: #3470ff;
   color: #ffffff;
   cursor: pointer;
@@ -59,7 +57,6 @@ const PaginationButton = styled.button`
   }
 
   &:hover:not(:disabled) {
-    /* background-color: #f0f0f0; */
     background-color: #0b44cd;
   }
 `;
@@ -91,6 +88,8 @@ const DivButton = styled.div`
   gap: 200px;
   align-items: center;
   padding-left: 10px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 `;
 const DivSortButton = styled.div`
   display: flex;
