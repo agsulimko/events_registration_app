@@ -9,7 +9,7 @@ const DivEvents = styled.div`
   flex-wrap: wrap;
   gap: 40px;
   justify-content: center;
-  padding-top: 65px;
+  padding-top: 90px;
 `;
 const DivEvent = styled.div`
   border: 1px solid black;
