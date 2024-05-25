@@ -18,7 +18,7 @@ import {
   DivButton,
   DivLink,
 } from "./Register.styled";
-import { getViews, postViews } from "api/api";
+import { getViews, putViews, postViews } from "api/api";
 import styled from "styled-components";
 import { toast } from "react-hot-toast";
 
@@ -75,8 +75,8 @@ const Register = () => {
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState({});
   const [views, setViews] = useState([]);
-  // const [alleViews, setAlleViews] = useState([]);
-
+  const [alleViews, setAlleViews] = useState([]);
+  // const [filteredAlleEmail, setFilteredAlleEmail] = useState([]);
   const [futureDate, setFutureDate] = useState(false);
   const { title } = location.state;
 
@@ -84,7 +84,8 @@ const Register = () => {
     try {
       const results = await getViews();
       // console.log(results);
-      // setAlleViews(results);
+      setAlleViews(results);
+
       setViews(results.filter((view) => view.event.includes(registerId)));
     } catch (err) {
       console.log(err.message);
@@ -132,11 +133,24 @@ const Register = () => {
       }
     }
   };
+  const handleRegisterAnotherUser = () => {
+    // Сбрасываем success обратно в false, чтобы снова отобразить форму регистрации
+
+    setSuccess(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(alleViews);
-    // console.log(formData.email);
+    console.log(alleViews);
+    console.log(views);
+
+    console.log(formData.email);
+    const filteredAlleEmail = alleViews.filter(
+      (view) => view.email === formData.email
+    );
+
+    // setFilteredAlleEmail();
+    // console.log(filteredAlleEmail[0].event[0]);
 
     const currentDate = new Date().toISOString().split("T")[0];
     const selectedDate = formData.dateOfBirth;
@@ -145,6 +159,12 @@ const Register = () => {
     const selectedDateObj = new Date(selectedDate);
     const differenceInMs = selectedDateObj.getTime() - currentDateObj.getTime();
 
+    // if (filteredAlleEmail.length > 0) {
+    //   toast.error("такой пльзователь уже есть", {
+    //     duration: 5000,
+    //   });
+    //   return;
+    // }
     if (differenceInMs > 0) {
       toast.error("Date of birth cannot be in the future.", {
         duration: 5000,
@@ -158,6 +178,21 @@ const Register = () => {
       toast.error("User with this email is already registered.", {
         duration: 5000,
       });
+      return;
+    }
+    console.log(filteredAlleEmail.length);
+    if (filteredAlleEmail.length === 1) {
+      try {
+        const userId = filteredAlleEmail[0].id;
+        await putViews(userId, [...filteredAlleEmail[0].event, registerId]);
+        setSuccess(true);
+        toast.success("User event updated successfully", { duration: 5000 });
+      } catch (error) {
+        toast.error(`Failed to update user events: ${error.message}`, {
+          duration: 5000,
+        });
+        console.error("Failed to update user events:", error.message);
+      }
       return;
     }
 
@@ -210,115 +245,119 @@ const Register = () => {
     }
   };
 
-  if (success) {
-    return (
-      <SuccessMessage>
-        <H2>Registration Successful!</H2>
-        <H3>Thank you for registering.</H3>
-        <DivLink>
-          <LinkReturn to="/">Return to events</LinkReturn>
-        </DivLink>
-      </SuccessMessage>
-    );
-  }
-
   return (
-    <Section>
-      <H1>
-        Event registration <span style={{ color: "#3470ff" }}>{title}</span>
-      </H1>
-      <Form onSubmit={handleSubmit}>
-        <DivForm>
-          <Label>
-            Full Name
-            <Input
-              type="text"
-              name="fullName"
-              value={formData.fullName}
-              onChange={handleChange}
-              // pattern="^[a-zA-ZÀ-ÿ'-]+( [a-zA-ZÀ-ÿ'-]+)*$"
-              placeholder="Anna Perfler"
-              required
-            />
-            {errors.fullName && <span>{errors.fullName}</span>}
-          </Label>
-          <Label>
-            Email
-            <Input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="ivanov@gmail.com"
-              required
-            />
-            {errors.email && <span>{errors.email}</span>}
-          </Label>
-          <Label>
-            Date of Birth
-            <Input
-              type="date"
-              name="dateOfBirth"
-              value={formData.dateOfBirth}
-              onChange={handleChange}
-              required
-              style={{ color: futureDate ? "red" : "inherit" }}
-            />
-            <div style={{ height: 20 }}>
-              {errors.dateOfBirth && (
-                <span style={{ color: "red" }}>{errors.dateOfBirth}</span>
-              )}
-              {!errors.dateOfBirth && <span>&nbsp;</span>}
-            </div>
-          </Label>
-        </DivForm>
+    <>
+      {success ? (
+        <SuccessMessage>
+          <H2>Registration Successful!</H2>
+          <H3>Thank you for registering.</H3>
+          <DivLink>
+            <LinkReturn to="/">Return to events</LinkReturn>
+            <Button onClick={handleRegisterAnotherUser} style={{ padding: 0 }}>
+              Register another
+              {/* Register another user for this event */}
+            </Button>
+          </DivLink>
+        </SuccessMessage>
+      ) : (
+        <Section>
+          <H1>
+            Event registration <span style={{ color: "#3470ff" }}>{title}</span>
+          </H1>
+          <Form onSubmit={handleSubmit}>
+            <DivForm>
+              <Label>
+                Full Name
+                <Input
+                  type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  // pattern="^[a-zA-ZÀ-ÿ'-]+( [a-zA-ZÀ-ÿ'-]+)*$"
+                  placeholder="Anna Perfler"
+                  required
+                />
+                {errors.fullName && <span>{errors.fullName}</span>}
+              </Label>
+              <Label>
+                Email
+                <Input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="ivanov@gmail.com"
+                  required
+                />
+                {errors.email && <span>{errors.email}</span>}
+              </Label>
+              <Label>
+                Date of Birth
+                <Input
+                  type="date"
+                  name="dateOfBirth"
+                  value={formData.dateOfBirth}
+                  onChange={handleChange}
+                  required
+                  style={{ color: futureDate ? "red" : "inherit" }}
+                />
+                <div style={{ height: 20 }}>
+                  {errors.dateOfBirth && (
+                    <span style={{ color: "red" }}>{errors.dateOfBirth}</span>
+                  )}
+                  {!errors.dateOfBirth && <span>&nbsp;</span>}
+                </div>
+              </Label>
+            </DivForm>
 
-        <Label>
-          Where did you hear about this event?
-          <DivRadioInput>
-            <RadioInput>
-              <input
-                type="radio"
-                name="whereHeard"
-                value="Social media"
-                checked={formData.whereHeard === "Social media"}
-                onChange={handleChange}
-                required
-              />
-              <span>Social media</span>
-            </RadioInput>
-            <RadioInput>
-              <input
-                type="radio"
-                name="whereHeard"
-                value="Friends"
-                checked={formData.whereHeard === "Friends"}
-                onChange={handleChange}
-                required
-              />
-              <span>Friends</span>
-            </RadioInput>
-            <RadioInput>
-              <input
-                type="radio"
-                name="whereHeard"
-                value="Found myself"
-                checked={formData.whereHeard === "Found myself"}
-                onChange={handleChange}
-                required
-              />
-              <span>Found myself</span>
-            </RadioInput>
-          </DivRadioInput>
-        </Label>
-        <DivButton>
-          <Button type="submit">Ok</Button>
-          <LinkCancel to="/">
-            <p>Cancel</p>
-          </LinkCancel>
-        </DivButton>
-      </Form>
-    </Section>
+            <Label>
+              Where did you hear about this event?
+              <DivRadioInput>
+                <RadioInput>
+                  <input
+                    type="radio"
+                    name="whereHeard"
+                    value="Social media"
+                    checked={formData.whereHeard === "Social media"}
+                    onChange={handleChange}
+                    required
+                  />
+                  <span>Social media</span>
+                </RadioInput>
+                <RadioInput>
+                  <input
+                    type="radio"
+                    name="whereHeard"
+                    value="Friends"
+                    checked={formData.whereHeard === "Friends"}
+                    onChange={handleChange}
+                    required
+                  />
+                  <span>Friends</span>
+                </RadioInput>
+                <RadioInput>
+                  <input
+                    type="radio"
+                    name="whereHeard"
+                    value="Found myself"
+                    checked={formData.whereHeard === "Found myself"}
+                    onChange={handleChange}
+                    required
+                  />
+                  <span>Found myself</span>
+                </RadioInput>
+              </DivRadioInput>
+            </Label>
+            <DivButton>
+              <Button type="submit">Ok</Button>
+              <LinkCancel to="/">
+                <p>Cancel</p>
+              </LinkCancel>
+            </DivButton>
+          </Form>
+        </Section>
+      )}
+    </>
   );
 };
 

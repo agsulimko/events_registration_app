@@ -197,6 +197,8 @@ import {
   Div,
 } from "./Events.styled";
 
+// import { getEventbriteCategories } from "api/apiEventbrite";
+
 const LinkRegisterView = styled(Link)`
   color: #3470ff;
   font-weight: 600;
@@ -238,6 +240,19 @@ const Events = () => {
   const [hasMore, setHasMore] = useState(true);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  // const fetchEventbriteCategories = async () => {
+  //   try {
+  //     const categories = await getEventbriteCategories();
+  //     console.log("Event categories:", categories);
+  //   } catch (err) {
+  //     console.error("Failed to fetch categories from Eventbrite:", err.message);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchEventbriteCategories();
+  // }, []);
 
   const fetchEvents = async (page, sortBy, reset = false) => {
     setLoading(true);

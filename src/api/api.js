@@ -36,6 +36,24 @@ export const getEvents = async (page, sortBy) => {
     throw error;
   }
 };
+export const postEvents = async userData => {
+  const { title, description, eventdate, organizer } = userData;
+  const url = new URL('/users', axios.defaults.baseURL);
+
+  try {
+    const response = await axios.post(url.toString(), {
+      title: title,
+      description: description,
+      eventdate: eventdate,
+      organizer: organizer,
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch users:', error.message);
+    throw error;
+  }
+};
 
 export const getViews = async () => {
   const url = new URL('/users', axios.defaults.baseURL);
@@ -70,11 +88,11 @@ export const postViews = async userData => {
   }
 };
 
-export const patchViews = async (id, event) => {
+export const putViews = async (id, event) => {
   const url = new URL(`/users/${id}`, axios.defaults.baseURL);
 
   try {
-    const response = await axios.patch(url.toString(), {
+    const response = await axios.put(url.toString(), {
       event: event,
     });
 
@@ -84,16 +102,3 @@ export const patchViews = async (id, event) => {
     throw error;
   }
 };
-
-// export const getRegistrations = async () => {
-//   const url = new URL('/users', axios.defaults.baseURL);
-
-//   try {
-//     const response = await axios.get(url.toString());
-//     console.log(response.data);
-//     return response.data;
-//   } catch (error) {
-//     console.error('Failed to fetch users:', error.message);
-//     throw error;
-//   }
-// };
