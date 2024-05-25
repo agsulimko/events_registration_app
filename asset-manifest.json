@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/events_registration_app/static/css/main.5802cd39.css",
-    "main.js": "/events_registration_app/static/js/main.096f4699.js",
-    "static/js/762.b829007f.chunk.js": "/events_registration_app/static/js/762.b829007f.chunk.js",
+    "main.js": "/events_registration_app/static/js/main.8f1105d7.js",
+    "static/js/762.8fa24a64.chunk.js": "/events_registration_app/static/js/762.8fa24a64.chunk.js",
     "static/js/149.35863f62.chunk.js": "/events_registration_app/static/js/149.35863f62.chunk.js",
     "static/js/92.d98404f9.chunk.js": "/events_registration_app/static/js/92.d98404f9.chunk.js",
     "static/js/294.84e823ba.chunk.js": "/events_registration_app/static/js/294.84e823ba.chunk.js",
@@ -47,8 +47,8 @@
     "static/media/manrope-cyrillic-ext-400-normal.woff2": "/events_registration_app/static/media/manrope-cyrillic-ext-400-normal.6ba15efc9d2f0b9ed4a8.woff2",
     "index.html": "/events_registration_app/index.html",
     "main.5802cd39.css.map": "/events_registration_app/static/css/main.5802cd39.css.map",
-    "main.096f4699.js.map": "/events_registration_app/static/js/main.096f4699.js.map",
-    "762.b829007f.chunk.js.map": "/events_registration_app/static/js/762.b829007f.chunk.js.map",
+    "main.8f1105d7.js.map": "/events_registration_app/static/js/main.8f1105d7.js.map",
+    "762.8fa24a64.chunk.js.map": "/events_registration_app/static/js/762.8fa24a64.chunk.js.map",
     "149.35863f62.chunk.js.map": "/events_registration_app/static/js/149.35863f62.chunk.js.map",
     "92.d98404f9.chunk.js.map": "/events_registration_app/static/js/92.d98404f9.chunk.js.map",
     "294.84e823ba.chunk.js.map": "/events_registration_app/static/js/294.84e823ba.chunk.js.map",
@@ -56,6 +56,6 @@
   },
   "entrypoints": [
     "static/css/main.5802cd39.css",
-    "static/js/main.096f4699.js"
+    "static/js/main.8f1105d7.js"
   ]
 }
