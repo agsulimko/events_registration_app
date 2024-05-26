@@ -1,6 +1,7 @@
 // infinite scroll pagination (бесконечная прокрутка страниц)
 
 // Events.jsx
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
@@ -18,6 +19,7 @@ import {
   DivSortButton,
   Div,
 } from "./Events.styled";
+import { getAllEventyay } from "api/apiEventyay";
 
 const LinkRegisterView = styled(Link)`
   color: #3470ff;
@@ -61,18 +63,18 @@ const Events = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const accessToken =
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTY2NjMxNDksIm5iZiI6MTcxNjY2MzE0OSwianRpIjoiNzRjMGRkYTgtNjE0My00ODAyLTg0ZWItYjQyY2IzODcxZTM3IiwiZXhwIjoxNzE2NzQ5NTQ5LCJpZGVudGl0eSI6MzcwMTQsImZyZXNoIjp0cnVlLCJ0eXBlIjoiYWNjZXNzIiwiY3NyZiI6ImVhNGVkNzgyLWFlY2EtNDEwZi1iMDY1LWI2YmJhNmMzYzk3OCJ9.eogha1Da36F_5zA7BfAvUTD1kxxljGSU7m_qLva0Fco";
+  // const accessToken =
+  //   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTY2NjMxNDksIm5iZiI6MTcxNjY2MzE0OSwianRpIjoiNzRjMGRkYTgtNjE0My00ODAyLTg0ZWItYjQyY2IzODcxZTM3IiwiZXhwIjoxNzE2NzQ5NTQ5LCJpZGVudGl0eSI6MzcwMTQsImZyZXNoIjp0cnVlLCJ0eXBlIjoiYWNjZXNzIiwiY3NyZiI6ImVhNGVkNzgyLWFlY2EtNDEwZi1iMDY1LWI2YmJhNmMzYzk3OCJ9.eogha1Da36F_5zA7BfAvUTD1kxxljGSU7m_qLva0Fco";
 
-  fetch("https://api.eventyay.com/v1/events", {
-    method: "GET",
-    headers: {
-      Authorization: `JWT ${accessToken}`,
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => console.log(data.data[0].attributes.name))
-    .catch((error) => console.error("Error:", error));
+  // fetch("https://api.eventyay.com/v1/events", {
+  //   method: "GET",
+  //   headers: {
+  //     Authorization: `JWT ${accessToken}`,
+  //   },
+  // })
+  //   .then((response) => response.json())
+  //   .then((data) => console.log(data.data[0].attributes.name))
+  //   .catch((error) => console.error("Error:", error));
 
   const fetchEvents = async (page, sortBy, reset = false) => {
     setLoading(true);
@@ -91,6 +93,51 @@ const Events = () => {
       setLoading(false);
     }
   };
+
+  const postEventToResource = async (event) => {
+    try {
+      const response = await axios.post(
+        "https://66430a433c01a059ea213b70.mockapi.io/api/events",
+        event
+      );
+      console.log("Event added:", response.data);
+    } catch (error) {
+      console.error("Error adding event:", error);
+      throw error;
+    }
+  };
+
+  const fetchAllEventyay = async () => {
+    try {
+      const results = await getAllEventyay();
+      console.log("Fetched events:", results);
+
+      for (const event of results) {
+        console.log("event.id", event.id);
+        console.log("events", events);
+
+        const eventData = {
+          title: event.attributes.name,
+          description: event.attributes["location-name"],
+          // description: event.attributes.description,
+          eventdate: new Date(event.attributes["starts-at"]).getTime(),
+          organizer: event.attributes["owner-name"],
+          id_event: event.id,
+          id: event.id,
+        };
+
+        await postEventToResource(eventData);
+      }
+    } catch (error) {
+      console.error("Error fetching events:", error);
+      // Handle error
+    }
+  };
+
+  useEffect(() => {
+    fetchAllEventyay();
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     const initialFetch = async () => {

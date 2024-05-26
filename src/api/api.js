@@ -29,7 +29,7 @@ export const getEvents = async (page, sortBy) => {
 
   try {
     const response = await axios.get(url.toString());
-    // console.log(response.data);
+
     return response.data;
   } catch (error) {
     console.error('Failed to fetch events:', error.message);
