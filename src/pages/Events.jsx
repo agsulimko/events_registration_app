@@ -61,18 +61,18 @@ const Events = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // const fetchEventbriteCategories = async () => {
-  //   try {
-  //     const categories = await getEventbriteCategories();
-  //     console.log("Event categories:", categories);
-  //   } catch (err) {
-  //     console.error("Failed to fetch categories from Eventbrite:", err.message);
-  //   }
-  // };
+  const accessToken =
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTY2NjMxNDksIm5iZiI6MTcxNjY2MzE0OSwianRpIjoiNzRjMGRkYTgtNjE0My00ODAyLTg0ZWItYjQyY2IzODcxZTM3IiwiZXhwIjoxNzE2NzQ5NTQ5LCJpZGVudGl0eSI6MzcwMTQsImZyZXNoIjp0cnVlLCJ0eXBlIjoiYWNjZXNzIiwiY3NyZiI6ImVhNGVkNzgyLWFlY2EtNDEwZi1iMDY1LWI2YmJhNmMzYzk3OCJ9.eogha1Da36F_5zA7BfAvUTD1kxxljGSU7m_qLva0Fco";
 
-  // useEffect(() => {
-  //   fetchEventbriteCategories();
-  // }, []);
+  fetch("https://api.eventyay.com/v1/events", {
+    method: "GET",
+    headers: {
+      Authorization: `JWT ${accessToken}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data.data[0].attributes.name))
+    .catch((error) => console.error("Error:", error));
 
   const fetchEvents = async (page, sortBy, reset = false) => {
     setLoading(true);
