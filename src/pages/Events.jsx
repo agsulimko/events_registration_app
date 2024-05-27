@@ -5,7 +5,12 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { getEvents } from "api/api";
+import {
+  deleteEvent,
+  getAllEvents,
+  getEvents,
+  // postEventToResource,
+} from "api/api";
 import {
   H1,
   Section,
@@ -64,12 +69,17 @@ const Events = () => {
   const [scrolled, setScrolled] = useState(false);
 
   // const accessToken =
-  //   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTY2NjMxNDksIm5iZiI6MTcxNjY2MzE0OSwianRpIjoiNzRjMGRkYTgtNjE0My00ODAyLTg0ZWItYjQyY2IzODcxZTM3IiwiZXhwIjoxNzE2NzQ5NTQ5LCJpZGVudGl0eSI6MzcwMTQsImZyZXNoIjp0cnVlLCJ0eXBlIjoiYWNjZXNzIiwiY3NyZiI6ImVhNGVkNzgyLWFlY2EtNDEwZi1iMDY1LWI2YmJhNmMzYzk3OCJ9.eogha1Da36F_5zA7BfAvUTD1kxxljGSU7m_qLva0Fco";
+  //   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTY4MDE3MTUsIm5iZiI6MTcxNjgwMTcxNSwianRpIjoiMzgzMTYwMjUtMWM1ZS00MzExLTkzZGYtMjQyZDIyNTIyOWFiIiwiZXhwIjoxNzE2ODg4MTE1LCJpZGVudGl0eSI6MzcwMTQsImZyZXNoIjp0cnVlLCJ0eXBlIjoiYWNjZXNzIiwiY3NyZiI6ImE5Y2NjZWUzLTUzZGMtNDNmMy1iZDNiLWU3ZjQ4YjJlMGNkYyJ9.B678Sl9L683zg7vd_0Jq_dcnnaF0xBuokO4ioSByAlA";
 
   // fetch("https://api.eventyay.com/v1/events", {
   //   method: "GET",
   //   headers: {
   //     Authorization: `JWT ${accessToken}`,
+  //     params: {
+  //       "location-name": "Vienna",
+  //       "page[size]": 50, // Установите размер страницы
+  //       // "page[number]": page, // Указание номера страницы
+  //     },
   //   },
   // })
   //   .then((response) => response.json())
@@ -107,37 +117,101 @@ const Events = () => {
     }
   };
 
+  // const fetchAllEventyay = async () => {
+  //   await clearEventCollection();
+  //   try {
+  //     const results = await getAllEventyay();
+  //     console.log("Fetched events:", results);
+
+  //     for (const event of results) {
+  //       // console.log("event.id", event.id);
+  //       // console.log("events", events);
+
+  //       const eventData = {
+  //         title: event.attributes.name,
+  //         description: event.attributes["location-name"],
+  //         // description: event.attributes.description,
+  //         eventdate: new Date(event.attributes["starts-at"]).getTime(),
+  //         organizer: event.attributes["owner-name"],
+  //         id_event: event.id,
+  //         id: event.id,
+  //       };
+
+  //       await postEventToResource(eventData);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching events:", error);
+  //     // Handle error
+  //   }
+  // };
+
   const fetchAllEventyay = async () => {
+    await clearEventCollection();
     try {
       const results = await getAllEventyay();
       console.log("Fetched events:", results);
 
-      for (const event of results) {
-        console.log("event.id", event.id);
-        console.log("events", events);
+      const addedEventIds = new Set(); // Для отслеживания уже добавленных id_event
 
+      for (const event of results) {
         const eventData = {
           title: event.attributes.name,
           description: event.attributes["location-name"],
-          // description: event.attributes.description,
           eventdate: new Date(event.attributes["starts-at"]).getTime(),
           organizer: event.attributes["owner-name"],
           id_event: event.id,
           id: event.id,
         };
 
-        await postEventToResource(eventData);
+        // Проверяем, добавлено ли уже это событие
+        if (!addedEventIds.has(eventData.id_event)) {
+          await postEventToResource(eventData);
+          addedEventIds.add(eventData.id_event); // Добавляем id_event в Set
+        }
       }
     } catch (error) {
       console.error("Error fetching events:", error);
-      // Handle error
     }
   };
 
+  const clearEventCollection = async () => {
+    try {
+      const events = await getAllEvents();
+      console.log("events=", events);
+      for (const event of events) {
+        // console.log("event=", event);
+
+        await deleteEvent(event.id);
+      }
+
+      console.log("Event collection cleared.");
+
+      setEvents([]);
+    } catch (error) {
+      console.error("Error clearing event collection:", error.message);
+
+      throw error;
+    }
+  };
+
+  // useEffect(() => {
+  //   fetchAllEventyay();
+  //   // eslint-disable-next-line
+  // }, []);
+
   useEffect(() => {
-    fetchAllEventyay();
+    fetchAllEventyay(); // Вызываем сразу при монтировании
+
+    const interval = setInterval(() => {
+      fetchAllEventyay(); // Затем вызываем каждые 10 дней
+
+      // Если требуется обновление именно раз в 10 дней,
+      // то можно установить интервал в миллисекундах как 10 * 24 * 60 * 60 * 1000
+    }, 10 * 24 * 60 * 60 * 1000); // 10 дней в миллисекундах
+
+    return () => clearInterval(interval); // Очищаем интервал при размонтировании компонента
     // eslint-disable-next-line
-  }, []);
+  }, []); // Пустой массив зависимостей, чтобы выполнить эффект только один раз при монтировании
 
   useEffect(() => {
     const initialFetch = async () => {

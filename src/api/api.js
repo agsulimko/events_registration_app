@@ -2,6 +2,17 @@
 import axios from 'axios';
 axios.defaults.baseURL = 'https://66430a433c01a059ea213b70.mockapi.io/api';
 
+// export const postEventToResource = async event => {
+//   try {
+//     const response = await axios.post('/events', event);
+
+//     console.log('Event added:', response.data);
+//   } catch (error) {
+//     console.error('Error adding event:', error);
+//     throw error;
+//   }
+// };
+
 export const getAllEvents = async sortBy => {
   const url = new URL('/events', axios.defaults.baseURL);
   if (sortBy) {
@@ -102,3 +113,35 @@ export const putViews = async (id, event) => {
     throw error;
   }
 };
+
+export const deleteEvent = async (id, event) => {
+  const url = new URL(`/events/${id}`, axios.defaults.baseURL);
+
+  try {
+    const response = await axios.delete(url.toString());
+
+    console.log('Event deleted:', response.data);
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      console.log(`Event with id ${id} not found, skipping deletion`);
+    } else {
+      console.error('Error deleting event:', error);
+
+      throw error;
+    }
+  }
+};
+
+// export const deleteEvent = async id => {
+//   try {
+//     await axios.delete(`/events/${id}`);
+//     console.log(`Event with id ${id} deleted`);
+//   } catch (error) {
+//     if (error.response && error.response.status === 404) {
+//       console.warn(`Event with id ${id} not found, skipping deletion`);
+//     } else {
+//       console.error('Error deleting event:', error);
+//       throw error;
+//     }
+//   }
+// };
