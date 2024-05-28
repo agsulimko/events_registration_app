@@ -67,24 +67,7 @@ const Events = () => {
   const [hasMore, setHasMore] = useState(true);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
-  // const accessToken =
-  //   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTY4MDE3MTUsIm5iZiI6MTcxNjgwMTcxNSwianRpIjoiMzgzMTYwMjUtMWM1ZS00MzExLTkzZGYtMjQyZDIyNTIyOWFiIiwiZXhwIjoxNzE2ODg4MTE1LCJpZGVudGl0eSI6MzcwMTQsImZyZXNoIjp0cnVlLCJ0eXBlIjoiYWNjZXNzIiwiY3NyZiI6ImE5Y2NjZWUzLTUzZGMtNDNmMy1iZDNiLWU3ZjQ4YjJlMGNkYyJ9.B678Sl9L683zg7vd_0Jq_dcnnaF0xBuokO4ioSByAlA";
-
-  // fetch("https://api.eventyay.com/v1/events", {
-  //   method: "GET",
-  //   headers: {
-  //     Authorization: `JWT ${accessToken}`,
-  //     params: {
-  //       "location-name": "Vienna",
-  //       "page[size]": 50, // Установите размер страницы
-  //       // "page[number]": page, // Указание номера страницы
-  //     },
-  //   },
-  // })
-  //   .then((response) => response.json())
-  //   .then((data) => console.log(data.data[0].attributes.name))
-  //   .catch((error) => console.error("Error:", error));
+  // const [eventyay, setEventyay] = useState([]);
 
   const fetchEvents = async (page, sortBy, reset = false) => {
     setLoading(true);
@@ -104,70 +87,104 @@ const Events = () => {
     }
   };
 
+  // const postEventToResource = async (event) => {
+  //   try {
+  //     const response = await axios.post(
+  //       "https://66430a433c01a059ea213b70.mockapi.io/api/events",
+  //       event
+  //     );
+
+  //     console.log("Event added:", response.data);
+  //     //     setEvents((prevEvents) => [response.data, ...prevEvents]);
+  //     //   } catch (error) {
+  //     //     console.error("Error adding event:", error);
+  //     //     throw error;
+  //     //   }
+  //     // };
+  //     //   Проверка на дублирование событий
+
+  //     setEvents((prevEvents) => {
+  //       const isDuplicate = prevEvents.some(
+  //         (e) => e.id_event === event.id_event
+  //       );
+  //       if (isDuplicate) {
+  //         return prevEvents;
+  //       }
+
+  //       return [response.data, ...prevEvents];
+  //     });
+  //   } catch (error) {
+  //     console.error("Error adding event:", error);
+
+  //     throw error;
+  //   }
+  // };
+
   const postEventToResource = async (event) => {
     try {
+      const existingEvents = await getAllEvents();
+
+      const isDuplicate = existingEvents.some(
+        (e) => e.id_event === event.id_event
+      );
+
+      if (isDuplicate) {
+        console.log("Duplicate event found, skipping:", event.id_event);
+
+        return;
+      }
       const response = await axios.post(
         "https://66430a433c01a059ea213b70.mockapi.io/api/events",
         event
       );
+
+      console.log("Event=:", event);
+
       console.log("Event added:", response.data);
+
+      setEvents((prevEvents) => {
+        // Check if the event already exists in prevEvents
+
+        const isAlreadyAdded = prevEvents.some(
+          (e) => e.id_event === response.data.id_event
+        );
+
+        if (isAlreadyAdded) {
+          console.log(
+            "Event already added to state, skipping:",
+            response.data.id_event
+          );
+
+          return prevEvents;
+        }
+
+        return [response.data, ...prevEvents];
+      });
     } catch (error) {
       console.error("Error adding event:", error);
+
       throw error;
     }
   };
 
-  // const fetchAllEventyay = async () => {
-  //   await clearEventCollection();
-  //   try {
-  //     const results = await getAllEventyay();
-  //     console.log("Fetched events:", results);
-
-  //     for (const event of results) {
-  //       // console.log("event.id", event.id);
-  //       // console.log("events", events);
-
-  //       const eventData = {
-  //         title: event.attributes.name,
-  //         description: event.attributes["location-name"],
-  //         // description: event.attributes.description,
-  //         eventdate: new Date(event.attributes["starts-at"]).getTime(),
-  //         organizer: event.attributes["owner-name"],
-  //         id_event: event.id,
-  //         id: event.id,
-  //       };
-
-  //       await postEventToResource(eventData);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching events:", error);
-  //     // Handle error
-  //   }
-  // };
-
   const fetchAllEventyay = async () => {
-    await clearEventCollection();
     try {
-      const results = await getAllEventyay();
-      console.log("Fetched events:", results);
-
-      const addedEventIds = new Set(); // Для отслеживания уже добавленных id_event
-
-      for (const event of results) {
+      const events = await getAllEventyay();
+      await clearEventCollection();
+      console.log("Fetched events:", events);
+      for (const event of events) {
         const eventData = {
           title: event.attributes.name,
           description: event.attributes["location-name"],
           eventdate: new Date(event.attributes["starts-at"]).getTime(),
           organizer: event.attributes["owner-name"],
           id_event: event.id,
+          image: event.attributes["thumbnail-image-url"],
+          // image: event.attributes["large-image-url"],
           id: event.id,
         };
 
-        // Проверяем, добавлено ли уже это событие
-        if (!addedEventIds.has(eventData.id_event)) {
-          await postEventToResource(eventData);
-          addedEventIds.add(eventData.id_event); // Добавляем id_event в Set
-        }
+        await postEventToResource(eventData);
       }
     } catch (error) {
       console.error("Error fetching events:", error);
@@ -177,7 +194,8 @@ const Events = () => {
   const clearEventCollection = async () => {
     try {
       const events = await getAllEvents();
-      console.log("events=", events);
+
+      // console.log("events=", events);
       for (const event of events) {
         // console.log("event=", event);
 
@@ -193,11 +211,6 @@ const Events = () => {
       throw error;
     }
   };
-
-  // useEffect(() => {
-  //   fetchAllEventyay();
-  //   // eslint-disable-next-line
-  // }, []);
 
   useEffect(() => {
     fetchAllEventyay(); // Вызываем сразу при монтировании
@@ -277,7 +290,7 @@ const Events = () => {
   const handleBackToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
+  console.log(events);
   return (
     <>
       <Section>
@@ -302,33 +315,47 @@ const Events = () => {
 
         <DivEvents className={"css.events"}>
           {events && events.length > 0 ? (
-            events.map((event, index) => (
-              <DivEvent key={index} className={"css.event_div"}>
-                <H2>{event.title}</H2>
-                <P>{event.description}</P>
-                <DivRegisterView>
-                  <LinkRegisterView
-                    to={`/register/${event.id}`}
-                    state={{
-                      from: location,
-                      title: event.title,
-                    }}
-                  >
-                    Register
-                  </LinkRegisterView>
+            Array.from(new Set(events.map((event) => event.id))).map(
+              (id, index) => {
+                const event = events.find((event) => event.id === id);
+                return (
+                  <DivEvent key={index} className={"css.event_div"}>
+                    <H2>{event.title}</H2>
+                    <div
+                      style={{
+                        height: 120,
+                        backgroundImage: `url(${event.image})`,
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                      }}
+                    ></div>
+                    <P>{event.description}</P>
 
-                  <LinkRegisterView
-                    to={`/view/${event.id}`}
-                    state={{
-                      from: location,
-                      title: event.title,
-                    }}
-                  >
-                    View
-                  </LinkRegisterView>
-                </DivRegisterView>
-              </DivEvent>
-            ))
+                    <DivRegisterView>
+                      <LinkRegisterView
+                        to={`/register/${event.id}`}
+                        state={{
+                          from: location,
+                          title: event.title,
+                        }}
+                      >
+                        Register
+                      </LinkRegisterView>
+
+                      <LinkRegisterView
+                        to={`/view/${event.id}`}
+                        state={{
+                          from: location,
+                          title: event.title,
+                        }}
+                      >
+                        View
+                      </LinkRegisterView>
+                    </DivRegisterView>
+                  </DivEvent>
+                );
+              }
+            )
           ) : (
             <p>No events found</p>
           )}
