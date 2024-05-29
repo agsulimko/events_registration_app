@@ -78,7 +78,7 @@ const Register = () => {
   const [alleViews, setAlleViews] = useState([]);
   // const [filteredAlleEmail, setFilteredAlleEmail] = useState([]);
   const [futureDate, setFutureDate] = useState(false);
-  const { title } = location.state;
+  const { title, id_event } = location.state;
 
   const fetchViews = async () => {
     try {
@@ -145,6 +145,7 @@ const Register = () => {
     console.log(views);
 
     console.log(formData.email);
+    // Проверяем, существует ли пользователь с таким же адресом электронной почты
     const filteredAlleEmail = alleViews.filter(
       (view) => view.email === formData.email
     );
@@ -181,10 +182,13 @@ const Register = () => {
       return;
     }
     console.log(filteredAlleEmail.length);
+
+    // Если пользователь существует, обновляем его событие
     if (filteredAlleEmail.length === 1) {
       try {
         const userId = filteredAlleEmail[0].id;
-        await putViews(userId, [...filteredAlleEmail[0].event, registerId]);
+        console.log(filteredAlleEmail[0].event);
+        await putViews(userId, [...filteredAlleEmail[0].event, id_event]);
         setSuccess(true);
         toast.success("User event updated successfully", { duration: 5000 });
       } catch (error) {
@@ -195,6 +199,7 @@ const Register = () => {
       }
       return;
     }
+    // Если пользователь не существует, добавляем нового пользователя с его уникальным событием
 
     const validationErrors = {};
     Object.entries(formData).forEach(([key, value]) => {

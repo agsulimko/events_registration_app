@@ -118,9 +118,9 @@ export const deleteEvent = async (id, event) => {
   const url = new URL(`/events/${id}`, axios.defaults.baseURL);
 
   try {
-    const response = await axios.delete(url.toString());
+    await axios.delete(url.toString());
 
-    console.log('Event deleted:', response.data);
+    // console.log('Event deleted:', response.data);
   } catch (error) {
     if (error.response && error.response.status === 404) {
       console.log(`Event with id ${id} not found, skipping deletion`);

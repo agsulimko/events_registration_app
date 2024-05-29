@@ -2,21 +2,40 @@ import axios from 'axios';
 
 const baseURL = 'https://api.eventyay.com/v1';
 
+let authToken = null;
+let isFetchingToken = false;
+
 const getAuthToken = async () => {
+  if (authToken) {
+    console.log('Using cached auth token');
+    return authToken;
+  }
+  if (isFetchingToken) {
+    // console.log('Token is already being fetched, please wait');
+    while (isFetchingToken) {
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+    return authToken;
+  }
+
+  isFetchingToken = true;
   try {
+    // console.log('Fetching new auth token');
     const response = await axios.post(
       'https://api.eventyay.com/v1/auth/login',
       {
         email: 'a.g.sulimko@gmail.com',
-        password: 'Opel1978',
+        password: '',
       }
     );
-    const authToken = response.data.access_token;
-    console.log(response);
+    authToken = response.data.access_token;
+    console.log('Auth token:', response);
     return authToken;
   } catch (error) {
     console.error('Error fetching auth token:', error);
     throw error;
+  } finally {
+    isFetchingToken = false;
   }
 };
 
@@ -29,7 +48,7 @@ export const getAllEventyay = async page => {
       },
       params: {
         'location-name': 'Vienna',
-        'page[size]': 3,
+        'page[size]': 50,
         'page[number]': page,
       },
     });

@@ -69,6 +69,7 @@ const Events = () => {
   const [scrolled, setScrolled] = useState(false);
   // const [eventyay, setEventyay] = useState([]);
 
+  // ++++++++++++++++++++++++++++++
   const fetchEvents = async (page, sortBy, reset = false) => {
     setLoading(true);
     try {
@@ -86,80 +87,14 @@ const Events = () => {
       setLoading(false);
     }
   };
-
-  // const postEventToResource = async (event) => {
-  //   try {
-  //     const response = await axios.post(
-  //       "https://66430a433c01a059ea213b70.mockapi.io/api/events",
-  //       event
-  //     );
-
-  //     console.log("Event added:", response.data);
-  //     //     setEvents((prevEvents) => [response.data, ...prevEvents]);
-  //     //   } catch (error) {
-  //     //     console.error("Error adding event:", error);
-  //     //     throw error;
-  //     //   }
-  //     // };
-  //     //   Проверка на дублирование событий
-
-  //     setEvents((prevEvents) => {
-  //       const isDuplicate = prevEvents.some(
-  //         (e) => e.id_event === event.id_event
-  //       );
-  //       if (isDuplicate) {
-  //         return prevEvents;
-  //       }
-
-  //       return [response.data, ...prevEvents];
-  //     });
-  //   } catch (error) {
-  //     console.error("Error adding event:", error);
-
-  //     throw error;
-  //   }
-  // };
+  // ++++++++++++++++++++++++++++++++
 
   const postEventToResource = async (event) => {
     try {
-      const existingEvents = await getAllEvents();
-
-      const isDuplicate = existingEvents.some(
-        (e) => e.id_event === event.id_event
-      );
-
-      if (isDuplicate) {
-        console.log("Duplicate event found, skipping:", event.id_event);
-
-        return;
-      }
-      const response = await axios.post(
+      await axios.post(
         "https://66430a433c01a059ea213b70.mockapi.io/api/events",
         event
       );
-
-      console.log("Event=:", event);
-
-      console.log("Event added:", response.data);
-
-      setEvents((prevEvents) => {
-        // Check if the event already exists in prevEvents
-
-        const isAlreadyAdded = prevEvents.some(
-          (e) => e.id_event === response.data.id_event
-        );
-
-        if (isAlreadyAdded) {
-          console.log(
-            "Event already added to state, skipping:",
-            response.data.id_event
-          );
-
-          return prevEvents;
-        }
-
-        return [response.data, ...prevEvents];
-      });
     } catch (error) {
       console.error("Error adding event:", error);
 
@@ -167,25 +102,47 @@ const Events = () => {
     }
   };
 
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
   const fetchAllEventyay = async () => {
     try {
-      const events = await getAllEventyay();
+      const eventyay = await getAllEventyay();
       await clearEventCollection();
-      console.log("Fetched events:", events);
-      for (const event of events) {
-        const eventData = {
-          title: event.attributes.name,
-          description: event.attributes["location-name"],
-          eventdate: new Date(event.attributes["starts-at"]).getTime(),
-          organizer: event.attributes["owner-name"],
-          id_event: event.id,
-          image: event.attributes["thumbnail-image-url"],
-          // image: event.attributes["large-image-url"],
-          id: event.id,
-        };
+      console.log("Fetched events:", eventyay);
 
-        await postEventToResource(eventData);
+      // Собираем данные для всех событий
+      const eventDataList = eventyay.map((event) => ({
+        title: event.attributes.name,
+        description: event.attributes["location-name"],
+        eventdate: new Date(event.attributes["starts-at"]).getTime(),
+        organizer: event.attributes["owner-name"],
+        id_event: event.id,
+        image: event.attributes["thumbnail-image-url"],
+      }));
+      console.log(eventDataList);
+      // Создаем множество для отслеживания уникальных id_event
+      const existingEventIds = new Set(events.map((event) => event.id_event));
+
+      // Добавляем только уникальные события в коллекцию
+      for (const eventData of eventDataList) {
+        // Пауза перед проверкой
+        await delay(100);
+
+        // Проверка, существует ли событие с таким же id_event
+        if (!existingEventIds.has(eventData.id_event)) {
+          await postEventToResource(eventData);
+          // Обновляем состояние events только после успешного добавления нового события
+          setEvents((prevEvents) => [...prevEvents, eventData]);
+          // Добавляем id_event в множество существующих id_event
+          existingEventIds.add(eventData.id_event);
+        } else {
+          console.log(
+            `Duplicate event found with id_event: ${eventData.id_event}`
+          );
+        }
       }
+
+      await fetchEvents(1, sortBy, true);
     } catch (error) {
       console.error("Error fetching events:", error);
     }
@@ -197,7 +154,7 @@ const Events = () => {
 
       // console.log("events=", events);
       for (const event of events) {
-        // console.log("event=", event);
+        //  console.log("event=", event);
 
         await deleteEvent(event.id);
       }
@@ -213,11 +170,10 @@ const Events = () => {
   };
 
   useEffect(() => {
-    fetchAllEventyay(); // Вызываем сразу при монтировании
+    // fetchAllEventyay(); // Вызываем сразу при монтировании
 
     const interval = setInterval(() => {
       fetchAllEventyay(); // Затем вызываем каждые 10 дней
-
       // Если требуется обновление именно раз в 10 дней,
       // то можно установить интервал в миллисекундах как 10 * 24 * 60 * 60 * 1000
     }, 10 * 24 * 60 * 60 * 1000); // 10 дней в миллисекундах
@@ -290,7 +246,7 @@ const Events = () => {
   const handleBackToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  console.log(events);
+  // console.log(events);
   return (
     <>
       <Section>
@@ -337,6 +293,7 @@ const Events = () => {
                         state={{
                           from: location,
                           title: event.title,
+                          id_event: event.id_event,
                         }}
                       >
                         Register
