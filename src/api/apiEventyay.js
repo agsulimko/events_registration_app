@@ -24,7 +24,7 @@ const getAuthToken = async () => {
     const response = await axios.post(
       'https://api.eventyay.com/v1/auth/login',
       {
-        email: 'a.g.sulimko@gmail.com',
+        email: 'a.g.@gmail.com',
         password: '',
       }
     );
