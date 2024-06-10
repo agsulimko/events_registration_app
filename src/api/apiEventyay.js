@@ -24,8 +24,8 @@ const getAuthToken = async () => {
     const response = await axios.post(
       'https://api.eventyay.com/v1/auth/login',
       {
-        email: 'a.g.@gmail.com',
-        password: '',
+        email: 'a.g.sulimko@gmail.com',
+        password: 'Opel1978',
       }
     );
     authToken = response.data.access_token;
@@ -48,7 +48,7 @@ export const getAllEventyay = async page => {
       },
       params: {
         'location-name': 'Vienna',
-        'page[size]': 50,
+        'page[size]': 5,
         'page[number]': page,
       },
     });
