@@ -118,6 +118,7 @@ const Events = () => {
         organizer: event.attributes["owner-name"],
         id_event: event.id,
         image: event.attributes["thumbnail-image-url"],
+        id: event.id,
       }));
       console.log(eventDataList);
       // Создаем множество для отслеживания уникальных id_event
@@ -170,7 +171,7 @@ const Events = () => {
   };
 
   useEffect(() => {
-    // fetchAllEventyay(); // Вызываем сразу при монтировании
+    fetchAllEventyay(); // Вызываем сразу при монтировании
 
     const interval = setInterval(() => {
       fetchAllEventyay(); // Затем вызываем каждые 10 дней

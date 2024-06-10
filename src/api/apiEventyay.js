@@ -48,7 +48,7 @@ export const getAllEventyay = async page => {
       },
       params: {
         'location-name': 'Vienna',
-        'page[size]': 5,
+        'page[size]': 4,
         'page[number]': page,
       },
     });
