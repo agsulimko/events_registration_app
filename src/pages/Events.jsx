@@ -336,6 +336,7 @@ const Events = () => {
                         state={{
                           from: location,
                           title: event.title,
+                          id_event: event.id_event,
                         }}
                       >
                         View

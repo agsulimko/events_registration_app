@@ -1,6 +1,6 @@
 // View.jsx
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import {
   H1,
@@ -43,20 +43,22 @@ const LinkGoBack = styled(Link)`
 `;
 const View = () => {
   const location = useLocation();
-  const { viewId } = useParams();
+  // const { viewId } = useParams();
   const [views, setViews] = useState([]);
   const [searchName, setSearchName] = useState("");
   const [searchEmail, setSearchEmail] = useState("");
   const [filteredViews, setFilteredViews] = useState([]);
-  const { title } = location.state;
+  const { title, id_event } = location.state;
   // const [lengthArrayEvent, setLengthArrayEvent] = useState([]);
 
   const fetchViews = async () => {
     try {
       const results = await getViews();
+      console.log(results);
+      console.log(id_event);
 
       const filteredViews = results.filter((view) =>
-        view.event.includes(viewId)
+        view.event.includes(id_event)
       );
 
       setViews(filteredViews);
@@ -69,7 +71,7 @@ const View = () => {
   useEffect(() => {
     fetchViews();
     // eslint-disable-next-line
-  }, [viewId]);
+  }, [id_event]);
 
   useEffect(() => {
     const filtered = views.filter(
