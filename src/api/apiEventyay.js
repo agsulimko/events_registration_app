@@ -24,8 +24,8 @@ const getAuthToken = async () => {
     const response = await axios.post(
       'https://api.eventyay.com/v1/auth/login',
       {
-        email: 'a.g.sulimko@gmail.com',
-        password: 'Opel1978',
+        email: 'events_registr@meta.ua',
+        password: 'Qwe12345',
       }
     );
     authToken = response.data.access_token;
@@ -42,14 +42,15 @@ const getAuthToken = async () => {
 export const getAllEventyay = async page => {
   try {
     const authToken = await getAuthToken(); // Получение актуального токена
+
     const response = await axios.get(`${baseURL}/events`, {
       headers: {
         Authorization: `JWT ${authToken}`,
       },
       params: {
-        'location-name': 'Vienna',
-        'page[size]': 4,
-        'page[number]': page,
+        // 'location-name': 'Vienna',
+        'page[size]': 240,
+        // 'page[number]': page,
       },
     });
     console.log('events:', response.data.data);

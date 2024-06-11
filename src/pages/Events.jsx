@@ -102,34 +102,39 @@ const Events = () => {
     }
   };
 
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
   const fetchAllEventyay = async () => {
+    await clearEventCollection();
     try {
       const eventyay = await getAllEventyay();
-      await clearEventCollection();
       console.log("Fetched events:", eventyay);
 
-      // Собираем данные для всех событий
-      const eventDataList = eventyay.map((event) => ({
-        title: event.attributes.name,
-        description: event.attributes["location-name"],
-        eventdate: new Date(event.attributes["starts-at"]).getTime(),
-        organizer: event.attributes["owner-name"],
-        id_event: event.id,
-        image: event.attributes["thumbnail-image-url"],
-        id: event.id,
-      }));
+      // Получаем текущую дату и время
+      // const currentDate = new Date().getTime();
+      const currentDate = 1640000000000;
+
+      // Собираем данные для всех событий и фильтруем только будущие события
+      const eventDataList = eventyay
+        .map((event) => ({
+          title: event.attributes.name,
+          description: event.attributes["location-name"],
+          eventdate: new Date(event.attributes["starts-at"]).getTime(),
+          organizer: event.attributes["owner-name"],
+          id_event: event.id,
+          image: event.attributes["thumbnail-image-url"],
+          id: event.id,
+        }))
+        .filter((event) => event.eventdate >= currentDate); //
+
       console.log(eventDataList);
+
       // Создаем множество для отслеживания уникальных id_event
-      const existingEventIds = new Set(events.map((event) => event.id_event));
+      const existingEvents = await getAllEvents();
+      const existingEventIds = new Set(
+        existingEvents.map((event) => event.id_event)
+      );
 
       // Добавляем только уникальные события в коллекцию
       for (const eventData of eventDataList) {
-        // Пауза перед проверкой
-        await delay(100);
-
-        // Проверка, существует ли событие с таким же id_event
         if (!existingEventIds.has(eventData.id_event)) {
           await postEventToResource(eventData);
           // Обновляем состояние events только после успешного добавления нового события
@@ -171,7 +176,7 @@ const Events = () => {
   };
 
   useEffect(() => {
-    fetchAllEventyay(); // Вызываем сразу при монтировании
+    // fetchAllEventyay(); // Вызываем сразу при монтировании
 
     const interval = setInterval(() => {
       fetchAllEventyay(); // Затем вызываем каждые 10 дней
@@ -234,7 +239,6 @@ const Events = () => {
   const handleSortEventDate = () => {
     setSortBy("eventdate");
   };
-
   const handleSortByOrganizer = () => {
     setSortBy("organizer");
   };
@@ -242,6 +246,11 @@ const Events = () => {
   const handleResetFilters = () => {
     setResetFilters((prevState) => !prevState);
     setSortBy("");
+
+    fetchAllEventyay(); // Вызываем сразу при монтировании
+  };
+  const handleUpdate = () => {
+    fetchAllEventyay();
   };
 
   const handleBackToTop = () => {
@@ -267,6 +276,7 @@ const Events = () => {
               </ButtonSort>
             </DivSortButton>
             <ButtonSort onClick={handleResetFilters}>Reset Filters</ButtonSort>
+            <ButtonSort onClick={handleUpdate}>Update events</ButtonSort>
           </DivButton>
         </Div>
 
@@ -278,6 +288,27 @@ const Events = () => {
                 return (
                   <DivEvent key={index} className={"css.event_div"}>
                     <H2>{event.title}</H2>
+
+                    <p>
+                      {(() => {
+                        const date = new Date(event.eventdate);
+                        const hours = date
+                          .getHours()
+                          .toString()
+                          .padStart(2, "0");
+                        const minutes = date
+                          .getMinutes()
+                          .toString()
+                          .padStart(2, "0");
+                        const day = date.getDate().toString().padStart(2, "0");
+                        const month = (date.getMonth() + 1)
+                          .toString()
+                          .padStart(2, "0");
+                        const year = date.getFullYear();
+                        return `${hours}:${minutes} ${day}-${month}-${year}`;
+                      })()}
+                    </p>
+
                     <div
                       style={{
                         height: 120,
